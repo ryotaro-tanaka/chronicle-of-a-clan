@@ -1,7 +1,20 @@
+# 00_Overview.md
 # Chronicle of a Clan — Overview
 
 This document describes the game’s design intent and the player experience at a high level.
-Detailed rules live in `02_System.md`, numeric tuning lives in `03_Balance.md`, and the terminal interface contract lives in `04_TerminalUI.md`.
+
+## Documentation boundaries (Single Source of Truth)
+- `01_Dev.md` defines implementation constraints and technical decisions.
+- `02_System.md` defines game rules, state transitions, and order of operations.
+- `03_Balance.md` defines numeric tuning values only (thresholds, tables, coefficients, curves).
+- `04_TerminalUI.md` defines the terminal UI contract (inputs/outputs/presentation), not game rules.
+- `docs/mvp/` defines staged scope and acceptance criteria; it is not an authoritative source for final rules.
+
+## Global Don’ts
+- Do not duplicate rules across documents. Prefer links to the owning file.
+- Do not put tuning numbers outside `03_Balance.md`.
+- Do not put UI formatting/command output text in `02_System.md`.
+- Do not put game rules or tuning numbers in `04_TerminalUI.md`.
 
 ---
 
