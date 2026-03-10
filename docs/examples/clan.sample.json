@@ -1,0 +1,21 @@
+{
+  "meta": {
+    "save_version": 1
+  },
+  "clan": {
+    "id": "clan_0001",
+    "name": "Chronicle Clan",
+    "day": 1,
+    "gold": 120,
+    "fame": 0
+  },
+  "members": [],
+  "inventory": {
+    "weapons": [],
+    "armor": []
+  },
+  "in_progress": {
+    "crafting": [],
+    "upgrading": []
+  }
+}
