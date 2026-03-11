@@ -6,6 +6,8 @@ import (
 	"strings"
 
 	"chronicle-of-a-clan/internal/core/save"
+	"chronicle-of-a-clan/internal/core/status"
+	"chronicle-of-a-clan/internal/ui/format"
 	"chronicle-of-a-clan/internal/ui/vfs"
 	prompt "github.com/c-bata/go-prompt"
 )
@@ -105,7 +107,7 @@ func (s *Session) ExecuteLine(line string) {
 func (s *Session) executeNode(target *vfs.Node) {
 	switch target.Name() {
 	case "status":
-		fmt.Fprint(s.out, save.FormatStatus(s.state))
+		fmt.Fprint(s.out, format.Status(status.FromState(s.state)))
 	case "exit":
 		s.done = true
 	}
