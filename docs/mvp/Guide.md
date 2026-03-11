@@ -1,4 +1,4 @@
-# MVP Docs — Shared Rules (docs/mvp/00.md)
+# MVP Docs — Shared Rules
 
 ## Purpose
 This file defines shared rules and conventions for all MVP stage documents under `docs/mvp/`.

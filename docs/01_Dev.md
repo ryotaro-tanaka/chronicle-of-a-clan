@@ -22,19 +22,35 @@ Implementation constraints and technical decisions that affect long-term maintai
 - REPL uses `go-prompt` for line editing, history, and tab completion.
 - The virtual FS model remains authoritative; completion candidates are derived from the FS tree.
 
-## Save Boundary
-This project is designed so that copying a save folder to another machine reproduces the same game state.
+## Save Boundary (slot-based)
+This project is designed so that copying a save slot directory reproduces the same game state.
 
-### Save unit
-- A “save” is a directory (a save slot).
-- The program loads a save by directory path.
+### Saves root
+- All save slots live under the project-root directory: `saves/`
+
+### Save slot naming
+- `coc` accepts a slot name (not a filesystem path).
+- Allowed characters: `A-Za-z0-9._-`
+- Must not start with `-`
+- Any other characters are rejected.
 
 ### Startup contract
 - Canonical invocation: `./coc <save_dir>`
-- If `<save_dir>` is not provided: print an actionable message and exit.
-- If `<save_dir>` is invalid: print an actionable message and exit.
+- `<save_dir>` is a slot name.
+- Load path is always resolved as: `saves/<save_dir>/`
+- If `<save_dir>` is missing or invalid: print an actionable message and exit.
 
-### Files
+### Init contract
+- Canonical invocation: `./coc init <save_dir>`
+- `<save_dir>` is a slot name (same validation rules).
+- Creates `saves/<save_dir>/` and copies the template contents into it.
+- If the target slot already exists: fail (no overwrite by default).
+
+### Template directory
+- Init template lives at: `examples/save_init_template/`
+- Must include at least: `examples/save_init_template/clan.json`
+
+### Save files
 Required:
 - `clan.json` (authoritative state snapshot)
 
@@ -42,19 +58,30 @@ Optional:
 - `quests.json` (active quest snapshot; may be absent in early stages)
 - `chronicle.jsonl` (append-only history log; non-authoritative)
 
+### Required vs optional behavior
+- If `clan.json` is missing: fail to load with a clear error.
+- If optional files are missing: load must still succeed, treating them as empty/not available.
+
 ### Versioning
 - `clan.json` must include `meta.save_version` (integer).
-- Unsupported versions hard-fail early stages.
+- If `save_version` is unsupported: fail to load with a clear error.
+- Early stages may hard-fail on unknown versions.
 
-### Sample
-- `docs/examples/clan.sample.json`
+### Atomic write policy
+When writing save files:
+- Write to `<name>.tmp`, flush, then rename to `<name>`.
+- Never partially overwrite a live save file.
 
-## Randomness & Reproducibility
-- Randomness may occur during generation/initialization.
-- Once committed to state, outcomes are immutable.
-- A given save state is reproducible when advanced from that state.
+## JSON shape (minimal requirements)
+`clan.json` must contain at least:
+- `meta.save_version`
+- `clan` object with fields required by the Status view contract (see `04_TerminalUI.md`)
+
+## Build artifacts
+- Build outputs are placed under `bin/` (and `bin/` is ignored by git).
 
 ## Testing notes
-- Cross-machine portability test (copy folder)
+- Cross-machine portability test (copy `saves/<slot>/`)
 - Negative tests for missing/invalid JSON and unsupported versions
-- Path resolver tests for virtual FS navigation and listing
+- Slot name validation tests (invalid chars, leading `-`)
+- Init tests (create, already exists, invalid name)
