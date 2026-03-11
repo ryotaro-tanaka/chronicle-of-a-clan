@@ -5,10 +5,15 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"io"
+	"io/fs"
 	"os"
 	"path/filepath"
+	"regexp"
 	"strings"
 )
+
+var slotNamePattern = regexp.MustCompile(`^[A-Za-z0-9._-]+$`)
 
 type clanFile struct {
 	Meta struct {
@@ -31,11 +36,16 @@ type clanFile struct {
 	} `json:"in_progress"`
 }
 
-func Load(saveDir string) (State, error) {
+func Load(slotName string) (State, error) {
+	if err := validateSlotName(slotName); err != nil {
+		return State{}, err
+	}
+	saveDir := slotPath(slotName)
+
 	info, err := os.Stat(saveDir)
 	if err != nil {
 		if errors.Is(err, os.ErrNotExist) {
-			return State{}, fmt.Errorf("invalid save directory path: directory not found: %s", saveDir)
+			return State{}, fmt.Errorf("slot not found: %s", saveDir)
 		}
 		return State{}, fmt.Errorf("invalid save directory path: %w", err)
 	}
@@ -84,6 +94,96 @@ func Load(saveDir string) (State, error) {
 		ChronicleEntryCount: chronicleCount,
 		HasChronicle:        hasChronicle,
 	}, nil
+}
+
+func Init(slotName string) error {
+	if err := validateSlotName(slotName); err != nil {
+		return err
+	}
+
+	root := savesRoot()
+	if err := os.MkdirAll(root, 0o755); err != nil {
+		return fmt.Errorf("failed to create saves directory: %w", err)
+	}
+
+	target := slotPath(slotName)
+	if _, err := os.Stat(target); err == nil {
+		return fmt.Errorf("slot already exists: %s", target)
+	} else if !errors.Is(err, os.ErrNotExist) {
+		return fmt.Errorf("failed to inspect slot: %w", err)
+	}
+
+	if err := os.MkdirAll(target, 0o755); err != nil {
+		return fmt.Errorf("failed to create slot directory: %w", err)
+	}
+
+	template := filepath.Join("examples", "save_init_template")
+	if err := copyDir(template, target); err != nil {
+		_ = os.RemoveAll(target)
+		return fmt.Errorf("failed to copy init template: %w", err)
+	}
+	return nil
+}
+
+func validateSlotName(slotName string) error {
+	if slotName == "" {
+		return errors.New("invalid slot name: <save_dir> is required")
+	}
+	if strings.HasPrefix(slotName, "-") {
+		return errors.New("invalid slot name: must not start with '-'; allowed characters are A-Za-z0-9._-")
+	}
+	if !slotNamePattern.MatchString(slotName) {
+		return errors.New("invalid slot name: allowed characters are A-Za-z0-9._- and it must not contain path separators")
+	}
+	return nil
+}
+
+func savesRoot() string { return "saves" }
+
+func slotPath(slotName string) string {
+	return filepath.Join(savesRoot(), slotName)
+}
+
+func copyDir(src, dst string) error {
+	return filepath.WalkDir(src, func(path string, d fs.DirEntry, err error) error {
+		if err != nil {
+			return err
+		}
+		rel, err := filepath.Rel(src, path)
+		if err != nil {
+			return err
+		}
+		if rel == "." {
+			return nil
+		}
+		target := filepath.Join(dst, rel)
+		if d.IsDir() {
+			return os.MkdirAll(target, 0o755)
+		}
+		if !d.Type().IsRegular() {
+			return nil
+		}
+		return copyFile(path, target)
+	})
+}
+
+func copyFile(src, dst string) error {
+	in, err := os.Open(src)
+	if err != nil {
+		return err
+	}
+	defer in.Close()
+
+	out, err := os.OpenFile(dst, os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0o644)
+	if err != nil {
+		return err
+	}
+	defer out.Close()
+
+	if _, err := io.Copy(out, in); err != nil {
+		return err
+	}
+	return nil
 }
 
 func countActiveQuests(path string) (int, error) {
