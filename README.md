@@ -4,19 +4,29 @@ A single-player, fully offline clan management game built in Go for terminal-fir
 
 You are a clan leader. Recruit members, manage equipment, take quests, and manually advance in-game time to resolve outcomes. The clan’s history is recorded through reproducible, system-driven logs.
 
+## Install
+
+```bash
+make install
+```
+
+Add Go bin to your PATH (bash):
+```bash
+echo 'export PATH="$HOME/go/bin:$PATH"' >> ~/.bashrc
+source ~/.bashrc
+```
+
 ## Usage
 
 Create a new save slot:
 ```bash
-./coc init <save_dir>
+coc init <save_dir>
 ```
 
 Start the game with an existing save slot:
 ```bash
-./coc <save_dir>
+coc <save_dir>
 ```
-
-`<save_dir>` is a save slot name under `saves/` (not a filesystem path).
 
 ## Documentation
 
