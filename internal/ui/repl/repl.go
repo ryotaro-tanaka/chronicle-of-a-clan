@@ -33,10 +33,30 @@ func (s *Session) RunPrompt() int {
 	completer := func(d prompt.Document) []prompt.Suggest {
 		return s.complete(d)
 	}
+	exitChecker := func(in string, breakline bool) bool {
+		if !breakline {
+			return false
+		}
+		in = strings.TrimSpace(in)
+		if in == "" {
+			return false
+		}
+		parts := strings.Fields(in)
+		cmd := parts[0]
+		if cmd == "exit" {
+			return true
+		}
+		target, err := vfs.Resolve(s.cwd, s.root, cmd)
+		if err != nil {
+			return false
+		}
+		return target.Type() == vfs.NodeAct && target.Name() == "exit"
+	}
 	p := prompt.New(
 		executor,
 		completer,
 		prompt.OptionPrefix("> "),
+		prompt.OptionSetExitCheckerOnInput(exitChecker),
 	)
 	p.Run()
 	return 0
@@ -114,10 +134,13 @@ func (s *Session) executeNode(target *vfs.Node) {
 }
 
 func (s *Session) complete(d prompt.Document) []prompt.Suggest {
-	line := d.CurrentLineBeforeCursor()
+	return s.completeLine(d.CurrentLineBeforeCursor())
+}
+
+func (s *Session) completeLine(line string) []prompt.Suggest {
 	fields := strings.Fields(line)
 	if len(fields) == 0 {
-		return prompt.FilterHasPrefix([]prompt.Suggest{{Text: "ls"}, {Text: "cd"}, {Text: "status"}, {Text: "exit"}}, "", true)
+		return nil
 	}
 
 	commands := []prompt.Suggest{{Text: "ls"}, {Text: "cd"}, {Text: "status"}, {Text: "exit"}}
