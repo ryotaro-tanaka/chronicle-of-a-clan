@@ -30,6 +30,8 @@ func NewTree() *Node {
 	root := newDir("/", nil)
 	clan := newDir("clan", root)
 	newNode("status", NodeView, clan)
+	dev := newDir("dev", root)
+	newNode("create_boss", NodeAct, dev)
 	newNode("exit", NodeAct, root)
 	return root
 }

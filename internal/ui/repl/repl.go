@@ -5,6 +5,7 @@ import (
 	"io"
 	"strings"
 
+	"chronicle-of-a-clan/internal/core/monsters"
 	"chronicle-of-a-clan/internal/core/save"
 	"chronicle-of-a-clan/internal/core/status"
 	"chronicle-of-a-clan/internal/ui/format"
@@ -69,14 +70,14 @@ func (s *Session) ExecuteLine(line string) {
 	if line == "" {
 		return
 	}
-	parts := strings.Fields(line)
-	cmd := parts[0]
+	fields := strings.Fields(line)
+	cmd := fields[0]
 
 	switch cmd {
 	case "ls":
 		target := s.cwd
-		if len(parts) == 2 {
-			next, err := vfs.Resolve(s.cwd, s.root, parts[1])
+		if len(fields) == 2 {
+			next, err := vfs.Resolve(s.cwd, s.root, fields[1])
 			if err != nil {
 				fmt.Fprintf(s.err, "ls failed: %v\n", err)
 				return
@@ -86,7 +87,7 @@ func (s *Session) ExecuteLine(line string) {
 				return
 			}
 			target = next
-		} else if len(parts) > 2 {
+		} else if len(fields) > 2 {
 			fmt.Fprintln(s.err, "ls accepts zero or one path argument")
 			return
 		}
@@ -94,11 +95,11 @@ func (s *Session) ExecuteLine(line string) {
 			fmt.Fprintln(s.out, row)
 		}
 	case "cd":
-		if len(parts) != 2 {
+		if len(fields) != 2 {
 			fmt.Fprintln(s.err, "cd requires exactly one path argument")
 			return
 		}
-		next, err := vfs.Resolve(s.cwd, s.root, parts[1])
+		next, err := vfs.Resolve(s.cwd, s.root, fields[1])
 		if err != nil {
 			fmt.Fprintf(s.err, "cd failed: %v\n", err)
 			return
@@ -120,17 +121,68 @@ func (s *Session) ExecuteLine(line string) {
 			fmt.Fprintf(s.err, "cannot execute directory: %s\n", cmd)
 			return
 		}
-		s.executeNode(target)
+		args := []string{}
+		if len(fields) > 1 {
+			args = fields[1:]
+		}
+		s.executeNode(target, args)
 	}
 }
 
-func (s *Session) executeNode(target *vfs.Node) {
+func (s *Session) executeNode(target *vfs.Node, args []string) {
 	switch target.Name() {
 	case "status":
 		fmt.Fprint(s.out, format.Status(status.FromState(s.state)))
 	case "exit":
 		s.done = true
+	case "create_boss":
+		s.handleCreateBoss(args)
 	}
+}
+
+func (s *Session) handleCreateBoss(args []string) {
+	region := "forest"
+	if len(args) >= 1 && args[0] != "" {
+		region = args[0]
+	}
+	questLevel := 1
+	if len(args) >= 2 {
+		if v, err := parseInt(args[1]); err == nil && v > 0 {
+			questLevel = v
+		} else {
+			fmt.Fprintf(s.err, "invalid quest level: %s\n", args[1])
+			return
+		}
+	}
+
+	var seedOpt *int64
+	if len(args) >= 3 {
+		if v, err := parseInt64(args[2]); err == nil {
+			seedOpt = &v
+		} else {
+			fmt.Fprintf(s.err, "invalid seed: %s\n", args[2])
+			return
+		}
+	}
+
+	boss, err := monsters.GenerateBoss(region, questLevel, seedOpt)
+	if err != nil {
+		fmt.Fprintf(s.err, "create_boss failed: %v\n", err)
+		return
+	}
+	fmt.Fprint(s.out, format.Boss(boss))
+}
+
+func parseInt(s string) (int, error) {
+	var v int
+	_, err := fmt.Sscanf(s, "%d", &v)
+	return v, err
+}
+
+func parseInt64(s string) (int64, error) {
+	var v int64
+	_, err := fmt.Sscanf(s, "%d", &v)
+	return v, err
 }
 
 func (s *Session) complete(d prompt.Document) []prompt.Suggest {

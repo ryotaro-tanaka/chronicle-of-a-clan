@@ -65,6 +65,27 @@ Defines the terminal UI contract: inputs, outputs, and presentation rules. This 
 
 No `help` command.
 
+## Dev commands (Stage 5)
+
+> These commands are intended for development and testing only. They are not part of the player-facing command set.
+
+- `dev/create_boss [region] [quest_level] [seed]`
+  - **Purpose**: Generate a single boss using the Core boss-generation logic and print a compact summary for inspection.
+  - **Arguments**:
+    - `region` (optional): boss region identifier. Defaults to `forest` if omitted.
+    - `quest_level` (optional): quest level integer. Defaults to `1` if omitted.
+    - `seed` (optional): integer seed for reproducible generation. If omitted, an internal time-based seed is used.
+  - **Behaviour**:
+    - Calls Core with the given `region` and `quest_level` (and `seed` if provided).
+    - Prints a one- or two-line summary including:
+      - Region, QuestLevel, MonsterLevel
+      - Rank (fixed boss tier), Overall (relative strength within the quest level range)
+      - Profile ID and Name
+      - Power, Guard, Evasion, Cunning
+  - **Example output** (format is illustrative and may be adjusted):
+    - `Boss: [Region=forest Rank=3 Overall=4 Profile=forest_003 Name="Ambushjaw Gator"]`
+    - `Stats: Power=120 Guard=95 Evasion=110 Cunning=130`
+
 ## Status Output Contract (compact)
 Required lines:
 - `Clan: <clan_name>   Day: <day>`

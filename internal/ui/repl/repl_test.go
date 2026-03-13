@@ -49,6 +49,16 @@ func TestStatusFromClanPathInvocation(t *testing.T) {
 	}
 }
 
+func TestDevCreateBossUnknownArgsDoNotPanic(t *testing.T) {
+	var out, err bytes.Buffer
+	s := NewSession(save.State{}, &out, &err)
+	// region does not exist; should report an error, not panic.
+	s.ExecuteLine("dev/create_boss nowhere 1")
+	if err.String() == "" && out.String() == "" {
+		t.Fatalf("expected some output or error for dev/create_boss with invalid region")
+	}
+}
+
 func TestExitSetsDone(t *testing.T) {
 	var out, err bytes.Buffer
 	s := NewSession(save.State{}, &out, &err)

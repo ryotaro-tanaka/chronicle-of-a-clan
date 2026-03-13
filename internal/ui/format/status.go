@@ -3,6 +3,7 @@ package format
 import (
 	"fmt"
 
+	"chronicle-of-a-clan/internal/core/monsters"
 	"chronicle-of-a-clan/internal/core/status"
 )
 
@@ -15,5 +16,20 @@ func Status(v status.View) string {
 		v.Fame,
 		v.MembersCount,
 		v.ActiveQuestsCount,
+	)
+}
+
+func Boss(b monsters.Boss) string {
+	return fmt.Sprintf(
+		"Boss: [Region=%s Rank=%d Overall=%d Profile=%s Name=\"%s\"]\nStats: Power=%d Guard=%d Evasion=%d Cunning=%d\n",
+		b.Region,
+		b.Rank,
+		b.Overall,
+		b.ProfileID,
+		b.Name,
+		b.Stats.Power,
+		b.Stats.Guard,
+		b.Stats.Evasion,
+		b.Stats.Cunning,
 	)
 }
