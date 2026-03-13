@@ -1,0 +1,449 @@
+{
+  "regions": {
+    "forest": {
+      "variation": [
+        {
+          "focused_stats_count": 1,
+          "variation": 0.12
+        },
+        {
+          "focused_stats_count": 2,
+          "variation": 0.06
+        },
+        {
+          "focused_stats_count": 3,
+          "variation": 0.04
+        }
+      ],
+      "profiles": [
+        {
+          "id": "forest_001",
+          "name": "The Cutahead Lizard King",
+          "stats": [
+            {
+              "stat": "cunning",
+              "ratio": 0.4
+            }
+          ],
+          "weight": 0.28
+        },
+        {
+          "id": "forest_002",
+          "name": "Leaf-Hider Hornbeast",
+          "stats": [
+            {
+              "stat": "evasion",
+              "ratio": 0.4
+            }
+          ],
+          "weight": 0.18
+        },
+        {
+          "id": "forest_003",
+          "name": "Ambushjaw Gator",
+          "stats": [
+            {
+              "stat": "cunning",
+              "ratio": 0.3
+            },
+            {
+              "stat": "evasion",
+              "ratio": 0.3
+            }
+          ],
+          "weight": 0.24
+        },
+        {
+          "id": "forest_004",
+          "name": "Brush-Sneak Snatchjaw",
+          "stats": [
+            {
+              "stat": "cunning",
+              "ratio": 0.3
+            },
+            {
+              "stat": "power",
+              "ratio": 0.3
+            }
+          ],
+          "weight": 0.16
+        },
+        {
+          "id": "forest_005",
+          "name": "Deepwood Jump-the-Line Chief",
+          "stats": [
+            {
+              "stat": "cunning",
+              "ratio": 0.24
+            },
+            {
+              "stat": "evasion",
+              "ratio": 0.22
+            },
+            {
+              "stat": "power",
+              "ratio": 0.2
+            }
+          ],
+          "weight": 0.14
+        }
+      ]
+    },
+    "volcano": {
+      "variation": [
+        {
+          "focused_stats_count": 1,
+          "variation": 0.08
+        },
+        {
+          "focused_stats_count": 2,
+          "variation": 0.05
+        },
+        {
+          "focused_stats_count": 3,
+          "variation": 0.03
+        }
+      ],
+      "profiles": [
+        {
+          "id": "volcano_001",
+          "name": "The Toughshell",
+          "stats": [
+            {
+              "stat": "guard",
+              "ratio": 0.4
+            }
+          ],
+          "weight": 0.3
+        },
+        {
+          "id": "volcano_002",
+          "name": "Scorchhide Brute",
+          "stats": [
+            {
+              "stat": "power",
+              "ratio": 0.4
+            }
+          ],
+          "weight": 0.16
+        },
+        {
+          "id": "volcano_003",
+          "name": "Redrock Hornback",
+          "stats": [
+            {
+              "stat": "guard",
+              "ratio": 0.3
+            },
+            {
+              "stat": "power",
+              "ratio": 0.3
+            }
+          ],
+          "weight": 0.26
+        },
+        {
+          "id": "volcano_004",
+          "name": "Crater Squathead",
+          "stats": [
+            {
+              "stat": "guard",
+              "ratio": 0.3
+            },
+            {
+              "stat": "cunning",
+              "ratio": 0.3
+            }
+          ],
+          "weight": 0.14
+        },
+        {
+          "id": "volcano_005",
+          "name": "Magma Crooked-Chief",
+          "stats": [
+            {
+              "stat": "guard",
+              "ratio": 0.24
+            },
+            {
+              "stat": "power",
+              "ratio": 0.22
+            },
+            {
+              "stat": "cunning",
+              "ratio": 0.2
+            }
+          ],
+          "weight": 0.14
+        }
+      ]
+    },
+    "desert": {
+      "variation": [
+        {
+          "focused_stats_count": 1,
+          "variation": 0.11
+        },
+        {
+          "focused_stats_count": 2,
+          "variation": 0.06
+        },
+        {
+          "focused_stats_count": 3,
+          "variation": 0.04
+        }
+      ],
+      "profiles": [
+        {
+          "id": "desert_001",
+          "name": "The Heat-Haze Hopper",
+          "stats": [
+            {
+              "stat": "evasion",
+              "ratio": 0.4
+            }
+          ],
+          "weight": 0.26
+        },
+        {
+          "id": "desert_002",
+          "name": "Sandwatch Lizard",
+          "stats": [
+            {
+              "stat": "cunning",
+              "ratio": 0.4
+            }
+          ],
+          "weight": 0.18
+        },
+        {
+          "id": "desert_003",
+          "name": "Windslip Lizard",
+          "stats": [
+            {
+              "stat": "evasion",
+              "ratio": 0.3
+            },
+            {
+              "stat": "cunning",
+              "ratio": 0.3
+            }
+          ],
+          "weight": 0.24
+        },
+        {
+          "id": "desert_004",
+          "name": "Sandslide Clawbeast",
+          "stats": [
+            {
+              "stat": "evasion",
+              "ratio": 0.3
+            },
+            {
+              "stat": "power",
+              "ratio": 0.3
+            }
+          ],
+          "weight": 0.18
+        },
+        {
+          "id": "desert_005",
+          "name": "Quicksand Queue-Cutter Fang",
+          "stats": [
+            {
+              "stat": "evasion",
+              "ratio": 0.24
+            },
+            {
+              "stat": "cunning",
+              "ratio": 0.22
+            },
+            {
+              "stat": "power",
+              "ratio": 0.2
+            }
+          ],
+          "weight": 0.14
+        }
+      ]
+    },
+    "tundra": {
+      "variation": [
+        {
+          "focused_stats_count": 1,
+          "variation": 0.09
+        },
+        {
+          "focused_stats_count": 2,
+          "variation": 0.05
+        },
+        {
+          "focused_stats_count": 3,
+          "variation": 0.03
+        }
+      ],
+      "profiles": [
+        {
+          "id": "tundra_001",
+          "name": "The Frostland Headbutter",
+          "stats": [
+            {
+              "stat": "power",
+              "ratio": 0.4
+            }
+          ],
+          "weight": 0.26
+        },
+        {
+          "id": "tundra_002",
+          "name": "Whitebreath Greathorn",
+          "stats": [
+            {
+              "stat": "guard",
+              "ratio": 0.4
+            }
+          ],
+          "weight": 0.18
+        },
+        {
+          "id": "tundra_003",
+          "name": "Snowsplitter Beast",
+          "stats": [
+            {
+              "stat": "power",
+              "ratio": 0.3
+            },
+            {
+              "stat": "guard",
+              "ratio": 0.3
+            }
+          ],
+          "weight": 0.26
+        },
+        {
+          "id": "tundra_004",
+          "name": "Icefield Flankhorn",
+          "stats": [
+            {
+              "stat": "power",
+              "ratio": 0.3
+            },
+            {
+              "stat": "cunning",
+              "ratio": 0.3
+            }
+          ],
+          "weight": 0.14
+        },
+        {
+          "id": "tundra_005",
+          "name": "Frozen Flats Break-In Chief",
+          "stats": [
+            {
+              "stat": "power",
+              "ratio": 0.24
+            },
+            {
+              "stat": "guard",
+              "ratio": 0.22
+            },
+            {
+              "stat": "cunning",
+              "ratio": 0.2
+            }
+          ],
+          "weight": 0.16
+        }
+      ]
+    },
+    "swamp": {
+      "variation": [
+        {
+          "focused_stats_count": 1,
+          "variation": 0.1
+        },
+        {
+          "focused_stats_count": 2,
+          "variation": 0.06
+        },
+        {
+          "focused_stats_count": 3,
+          "variation": 0.04
+        }
+      ],
+      "profiles": [
+        {
+          "id": "swamp_001",
+          "name": "Mudwait Maw",
+          "stats": [
+            {
+              "stat": "cunning",
+              "ratio": 0.4
+            }
+          ],
+          "weight": 0.24
+        },
+        {
+          "id": "swamp_002",
+          "name": "Reedshade Creeper",
+          "stats": [
+            {
+              "stat": "evasion",
+              "ratio": 0.4
+            }
+          ],
+          "weight": 0.2
+        },
+        {
+          "id": "swamp_003",
+          "name": "Boglurker",
+          "stats": [
+            {
+              "stat": "cunning",
+              "ratio": 0.3
+            },
+            {
+              "stat": "evasion",
+              "ratio": 0.3
+            }
+          ],
+          "weight": 0.26
+        },
+        {
+          "id": "swamp_004",
+          "name": "The Late-Staying Mireback",
+          "stats": [
+            {
+              "stat": "cunning",
+              "ratio": 0.3
+            },
+            {
+              "stat": "guard",
+              "ratio": 0.3
+            }
+          ],
+          "weight": 0.14
+        },
+        {
+          "id": "swamp_005",
+          "name": "Mistslime Elder",
+          "stats": [
+            {
+              "stat": "cunning",
+              "ratio": 0.24
+            },
+            {
+              "stat": "evasion",
+              "ratio": 0.22
+            },
+            {
+              "stat": "guard",
+              "ratio": 0.2
+            }
+          ],
+          "weight": 0.16
+        }
+      ]
+    }
+  }
+}
