@@ -73,26 +73,14 @@ Defines what happens and in what order in the Core system.
 ## Boss monster generation (MVP)
 
 - Boss monsters are generated from data-driven **Boss Profiles** and **level models**:
-  - A Boss Profile defines a 4-stat ratio pattern over Power, Guard, Evasion, and Cunning, plus:
-    - a fixed **Rank** (tier, e.g. forest Rank 1–5) used for progression,
-    - a display **Name**, and
-    - a per-region selection **weight**.
-  - For each region, a finite set of Boss Profiles and variation rules are defined in `data/boss_profiles.json`.
-- Generation flow (high level):
-  1. **Pick Quest Level**: The caller provides a Quest Level (integer).
-  2. **Pick Monster Level**: The Quest Level is mapped to an allowed Monster Level range via a table in `03_Balance.md` (backed by `data/levels.json`). A specific Monster Level is drawn uniformly from that range.
-  3. **Compute total stat budget**: The Monster Level is converted into a total stat budget (sum of Power/Guard/Evasion/Cunning) using a level budget model defined in `03_Balance.md` (backed by `monster_level_budget_model` in `data/levels.json`).
-  4. **Select Boss Profile**: For the chosen region, one Boss Profile is selected at random using its weight as a selection probability (relative to the other profiles in that region).
-  5. **Derive base stat ratios**:
-     - The profile’s `stats` list specifies a subset of stats with explicit ratios; their sum is \\(R_{focus}\\).
-     - Any remaining stats not listed in `stats` share the leftover \\(1 - R_{focus}\\) equally.
-  6. **Apply variation**:
-     - The number of focused stats (length of `stats`) is used to pick a variation rule for that region.
-     - The base ratios are perturbed according to this variation rule (e.g., small random noise) and then renormalised so that the four ratios still sum to 1.0.
-  7. **Scale to concrete stats**: The final ratios and the total stat budget determine the concrete Power/Guard/Evasion/Cunning values.
-  8. **Compute Overall**:
-     - Using the Monster Level and the Quest Level’s range, a relative position within the range is computed.
-     - This position is mapped to an integer Overall rating in \\([1..N]\\), where \\(N\\) is configured in `03_Balance.md` (backed by `overall_rating` in `data/levels.json`).
-- **Rank vs Overall**:
-  - **Rank** is a fixed tier attached to each Boss Profile (e.g. forest Rank1 = early boss, Rank5 = top boss). It is used for progression/unlock logic (outside the scope of this MVP stage).
-  - **Overall** is a per-instance measure of how strong this particular roll is **within its allowed Quest/Monster Level range** (e.g. under-tuned vs over-tuned for that quest). It is derived from the Monster Level and the Quest Level’s range, not fixed per boss.
+  - A Boss Profile has: `id`, `name`, `description`, `level_min`, `level_max`, and a 4-stat ratio pattern over Power, Guard, Evasion, and Cunning.
+  - The profile’s `stats` list gives explicit ratios for a subset of stats; any stat not listed shares the remainder \\(1 - R_{focus}\\) equally.
+  - For each region, profiles and per-region variation rules are defined in `data/boss_profiles.json`. Variation is chosen by the number of focused stats (`focused_stats_count`) from the region’s `variation[]`.
+- Generation flow (caller supplies **profile_id** and optional **seed**):
+  1. **Resolve profile**: Look up the profile by id across all regions. If not found, fail.
+  2. **Pick level**: Using the seed (or a time-based one if omitted), draw a level uniformly from the profile’s `level_min`..`level_max`.
+  3. **Compute total stat budget**: The level is converted into a total stat budget using the level budget model in `03_Balance.md` (backed by `monster_level_budget_model` in `data/levels.json`).
+  4. **Derive base stat ratios**: From the profile’s `stats`; remaining stats share the leftover ratio equally.
+  5. **Apply variation**: The region’s variation rule for this profile’s focused-stat count perturbs the ratios (e.g. random noise) and they are renormalised to sum to 1.0.
+  6. **Scale to concrete stats**: The final ratios and total budget give concrete Power/Guard/Evasion/Cunning.
+- The generated boss output includes: profile_id, name, description, region, level, and stats only.

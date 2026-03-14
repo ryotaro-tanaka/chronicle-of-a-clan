@@ -6,12 +6,6 @@ import (
 	"os"
 )
 
-type QuestLevelRange struct {
-	ID              int `json:"id"`
-	MonsterLevelMin int `json:"monster_level_min"`
-	MonsterLevelMax int `json:"monster_level_max"`
-}
-
 type LevelSegment struct {
 	From             int `json:"from"`
 	To               int `json:"to"`
@@ -23,21 +17,14 @@ type LevelBudgetModel struct {
 	Segments           []LevelSegment `json:"segments"`
 }
 
-type OverallRatingModel struct {
-	Type  string `json:"type"`
-	Steps int    `json:"steps"`
-}
-
 type LevelsConfig struct {
-	QuestLevels             []QuestLevelRange `json:"quest_levels"`
-	MonsterLevelBudgetModel LevelBudgetModel  `json:"monster_level_budget_model"`
-	MemberLevelBudgetModel  LevelBudgetModel  `json:"member_level_budget_model"`
-	OverallRating           OverallRatingModel `json:"overall_rating"`
+	MonsterLevelBudgetModel LevelBudgetModel `json:"monster_level_budget_model"`
+	MemberLevelBudgetModel  LevelBudgetModel `json:"member_level_budget_model"`
 }
 
 const levelsPath = "data/levels.json"
 
-// LoadLevels loads quest/monster level related configuration from JSON.
+// LoadLevels loads level budget configuration from JSON.
 func LoadLevels() (*LevelsConfig, error) {
 	f, err := os.Open(levelsPath)
 	if err != nil {
@@ -50,23 +37,7 @@ func LoadLevels() (*LevelsConfig, error) {
 		return nil, fmt.Errorf("decode levels: %w", err)
 	}
 
-	for _, ql := range cfg.QuestLevels {
-		if ql.MonsterLevelMin > ql.MonsterLevelMax {
-			return nil, fmt.Errorf("quest level %d has min > max", ql.ID)
-		}
-	}
-
 	return &cfg, nil
-}
-
-// QuestLevelRangeFor returns the range for a given quest level id.
-func (c *LevelsConfig) QuestLevelRangeFor(id int) (QuestLevelRange, error) {
-	for _, ql := range c.QuestLevels {
-		if ql.ID == id {
-			return ql, nil
-		}
-	}
-	return QuestLevelRange{}, fmt.Errorf("unknown quest level: %d", id)
 }
 
 // BudgetForMonsterLevel returns the total stat budget for the given monster level.
@@ -85,33 +56,3 @@ func (m LevelBudgetModel) BudgetForMonsterLevel(level int) int {
 	}
 	return budget
 }
-
-// OverallFor returns the overall rating (1..steps) for a monster level within a quest level range.
-func (c *LevelsConfig) OverallFor(ql QuestLevelRange, monsterLevel int) int {
-	steps := c.OverallRating.Steps
-	if steps <= 0 {
-		steps = 5
-	}
-	min := ql.MonsterLevelMin
-	max := ql.MonsterLevelMax
-	if max <= min {
-		return 1
-	}
-	if monsterLevel <= min {
-		return 1
-	}
-	if monsterLevel >= max {
-		return steps
-	}
-	span := float64(max - min)
-	pos := float64(monsterLevel-min) / span
-	rating := int(pos*float64(steps)) + 1
-	if rating < 1 {
-		rating = 1
-	}
-	if rating > steps {
-		rating = steps
-	}
-	return rating
-}
-

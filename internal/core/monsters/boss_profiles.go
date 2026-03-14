@@ -19,11 +19,12 @@ type RawStatFocus struct {
 }
 
 type RawProfile struct {
-	ID     string         `json:"id"`
-	Name   string         `json:"name"`
-	Rank   int            `json:"rank"`
-	Stats  []RawStatFocus `json:"stats"`
-	Weight float64        `json:"weight"`
+	ID          string         `json:"id"`
+	Name        string         `json:"name"`
+	Description string         `json:"description"`
+	LevelMin    int            `json:"level_min"`
+	LevelMax    int            `json:"level_max"`
+	Stats       []RawStatFocus `json:"stats"`
 }
 
 type RawRegion struct {
@@ -55,13 +56,12 @@ func LoadBossProfiles() (*BossProfilesConfig, error) {
 		if len(region.Profiles) == 0 {
 			return nil, fmt.Errorf("region %q has no profiles", regionID)
 		}
-		var weightSum float64
 		for _, p := range region.Profiles {
 			if p.ID == "" {
 				return nil, fmt.Errorf("region %q has profile with empty id", regionID)
 			}
-			if p.Weight < 0 {
-				return nil, fmt.Errorf("region %q profile %q has negative weight", regionID, p.ID)
+			if p.LevelMin > p.LevelMax {
+				return nil, fmt.Errorf("region %q profile %q has level_min > level_max", regionID, p.ID)
 			}
 			var ratioSum float64
 			for _, sf := range p.Stats {
@@ -73,10 +73,6 @@ func LoadBossProfiles() (*BossProfilesConfig, error) {
 			if ratioSum > 1.0+1e-9 {
 				return nil, fmt.Errorf("region %q profile %q has stats ratio sum > 1.0", regionID, p.ID)
 			}
-			weightSum += p.Weight
-		}
-		if weightSum <= 0 {
-			return nil, fmt.Errorf("region %q has non-positive total weight", regionID)
 		}
 		// variation entries are optional but must not duplicate focused_stats_count
 		seen := make(map[int]struct{}, len(region.Variation))
@@ -89,5 +85,17 @@ func LoadBossProfiles() (*BossProfilesConfig, error) {
 	}
 
 	return &cfg, nil
+}
+
+// ProfileByID finds a profile by id across all regions. Returns the region id and the profile, or an error if not found.
+func (c *BossProfilesConfig) ProfileByID(profileID string) (regionID string, profile RawProfile, err error) {
+	for rid, region := range c.Regions {
+		for _, p := range region.Profiles {
+			if p.ID == profileID {
+				return rid, p, nil
+			}
+		}
+	}
+	return "", RawProfile{}, fmt.Errorf("profile not found: %s", profileID)
 }
 

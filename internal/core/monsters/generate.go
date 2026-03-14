@@ -1,7 +1,6 @@
 package monsters
 
 import (
-	"fmt"
 	"math"
 	"math/rand"
 	"time"
@@ -17,19 +16,17 @@ type BossStats struct {
 
 // Boss is the fully generated boss monster.
 type Boss struct {
-	Region       string
-	QuestLevel   int
-	MonsterLevel int
-	Rank         int
-	Overall      int
-	ProfileID    string
-	Name         string
-	Stats        BossStats
+	Region    string
+	ProfileID string
+	Name      string
+	Description string
+	Level     int
+	Stats     BossStats
 }
 
-// GenerateBoss creates one boss for the given region and quest level.
+// GenerateBoss creates one boss for the given profile id and optional seed.
 // seedOpt can be nil to use a time-based seed.
-func GenerateBoss(region string, questLevel int, seedOpt *int64) (Boss, error) {
+func GenerateBoss(profileID string, seedOpt *int64) (Boss, error) {
 	profilesCfg, err := LoadBossProfiles()
 	if err != nil {
 		return Boss{}, err
@@ -39,18 +36,11 @@ func GenerateBoss(region string, questLevel int, seedOpt *int64) (Boss, error) {
 		return Boss{}, err
 	}
 
-	regionCfg, ok := profilesCfg.Regions[region]
-	if !ok {
-		return Boss{}, fmt.Errorf("unknown region: %s", region)
-	}
-	if len(regionCfg.Profiles) == 0 {
-		return Boss{}, fmt.Errorf("region %s has no profiles", region)
-	}
-
-	qlRange, err := levelsCfg.QuestLevelRangeFor(questLevel)
+	regionID, profile, err := profilesCfg.ProfileByID(profileID)
 	if err != nil {
 		return Boss{}, err
 	}
+	regionCfg := profilesCfg.Regions[regionID]
 
 	seed := time.Now().UnixNano()
 	if seedOpt != nil {
@@ -58,24 +48,18 @@ func GenerateBoss(region string, questLevel int, seedOpt *int64) (Boss, error) {
 	}
 	rnd := rand.New(rand.NewSource(seed))
 
-	monsterLevel := randomIntInRange(rnd, qlRange.MonsterLevelMin, qlRange.MonsterLevelMax)
-	budget := levelsCfg.MonsterLevelBudgetModel.BudgetForMonsterLevel(monsterLevel)
-
-	profile := weightedRandomProfile(rnd, regionCfg.Profiles)
+	level := randomIntInRange(rnd, profile.LevelMin, profile.LevelMax)
+	budget := levelsCfg.MonsterLevelBudgetModel.BudgetForMonsterLevel(level)
 	ratios := baseRatiosWithVariation(rnd, regionCfg, profile)
-
 	stats := scaleStats(budget, ratios)
-	overall := levelsCfg.OverallFor(qlRange, monsterLevel)
 
 	return Boss{
-		Region:       region,
-		QuestLevel:   questLevel,
-		MonsterLevel: monsterLevel,
-		Rank:         profile.Rank,
-		Overall:      overall,
-		ProfileID:    profile.ID,
-		Name:         profile.Name,
-		Stats:        stats,
+		Region:      regionID,
+		ProfileID:   profile.ID,
+		Name:        profile.Name,
+		Description: profile.Description,
+		Level:       level,
+		Stats:       stats,
 	}, nil
 }
 
@@ -84,26 +68,6 @@ func randomIntInRange(rnd *rand.Rand, min, max int) int {
 		return min
 	}
 	return rnd.Intn(max-min+1) + min
-}
-
-func weightedRandomProfile(rnd *rand.Rand, profiles []RawProfile) RawProfile {
-	var total float64
-	for _, p := range profiles {
-		total += p.Weight
-	}
-	if total <= 0 {
-		// Fallback to uniform choice
-		return profiles[rnd.Intn(len(profiles))]
-	}
-	r := rnd.Float64() * total
-	var acc float64
-	for _, p := range profiles {
-		acc += p.Weight
-		if r <= acc {
-			return p
-		}
-	}
-	return profiles[len(profiles)-1]
 }
 
 func baseRatiosWithVariation(rnd *rand.Rand, region RawRegion, profile RawProfile) map[string]float64 {
@@ -188,4 +152,3 @@ func scaleStats(budget int, ratios map[string]float64) BossStats {
 		Cunning: cunning,
 	}
 }
-

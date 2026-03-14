@@ -1,31 +1,20 @@
 {
-    "quest_levels": [
-      { "id": 1, "monster_level_min": 1,  "monster_level_max": 12 },
-      { "id": 2, "monster_level_min": 10, "monster_level_max": 22 },
-      { "id": 3, "monster_level_min": 20, "monster_level_max": 32 },
-      { "id": 4, "monster_level_min": 30, "monster_level_max": 42 },
-      { "id": 5, "monster_level_min": 40, "monster_level_max": 50 }
-    ],
-    "monster_level_budget_model": {
-      "base_budget_at_level_1": 80,
-      "segments": [
-        { "from": 1,  "to": 10, "per_level_increase": 4 },
-        { "from": 11, "to": 20, "per_level_increase": 5 },
-        { "from": 21, "to": 35, "per_level_increase": 6 },
-        { "from": 36, "to": 50, "per_level_increase": 7 }
-      ]
-    },
-    "member_level_budget_model": {
-      "base_budget_at_level_1": 60,
-      "segments": [
-        { "from": 1,  "to": 10, "per_level_increase": 3 },
-        { "from": 11, "to": 20, "per_level_increase": 4 },
-        { "from": 21, "to": 35, "per_level_increase": 5 },
-        { "from": 36, "to": 50, "per_level_increase": 6 }
-      ]
-    },
-    "overall_rating": {
-      "type": "relative_to_quest_level",
-      "steps": 5
-    }
+  "monster_level_budget_model": {
+    "base_budget_at_level_1": 80,
+    "segments": [
+      { "from": 1,  "to": 10, "per_level_increase": 4 },
+      { "from": 11, "to": 20, "per_level_increase": 5 },
+      { "from": 21, "to": 35, "per_level_increase": 6 },
+      { "from": 36, "to": 50, "per_level_increase": 7 }
+    ]
+  },
+  "member_level_budget_model": {
+    "base_budget_at_level_1": 60,
+    "segments": [
+      { "from": 1,  "to": 10, "per_level_increase": 3 },
+      { "from": 11, "to": 20, "per_level_increase": 4 },
+      { "from": 21, "to": 35, "per_level_increase": 5 },
+      { "from": 36, "to": 50, "per_level_increase": 6 }
+    ]
   }
+}

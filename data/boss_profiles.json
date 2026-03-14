@@ -19,78 +19,83 @@
         {
           "id": "forest_001",
           "name": "The Cutahead Lizard King",
-          "rank": 1,
+          "description": "A patient forest king that reads the hunt and tilts the flow of battle in its favor.",
+          "level_min": 47,
+          "level_max": 50,
           "stats": [
             {
               "stat": "cunning",
-              "ratio": 0.4
+              "ratio": 0.52
             }
-          ],
-          "weight": 0.28
+          ]
         },
         {
           "id": "forest_002",
           "name": "Leaf-Hider Hornbeast",
-          "rank": 2,
+          "description": "A horned stalker that melts into the leaves and slips past clean strikes.",
+          "level_min": 39,
+          "level_max": 43,
           "stats": [
             {
               "stat": "evasion",
-              "ratio": 0.4
+              "ratio": 0.48
             }
-          ],
-          "weight": 0.18
+          ]
         },
         {
           "id": "forest_003",
           "name": "Ambushjaw Gator",
-          "rank": 3,
+          "description": "A root-side ambusher that stays hard to pin down and attacks from bad angles.",
+          "level_min": 1,
+          "level_max": 5,
           "stats": [
             {
               "stat": "cunning",
-              "ratio": 0.3
+              "ratio": 0.36
             },
             {
               "stat": "evasion",
               "ratio": 0.3
             }
-          ],
-          "weight": 0.24
+          ]
         },
         {
           "id": "forest_004",
           "name": "Brush-Sneak Snatchjaw",
-          "rank": 4,
+          "description": "A brush-hidden brute that waits for one opening, then snaps in with crushing force.",
+          "level_min": 27,
+          "level_max": 31,
           "stats": [
             {
               "stat": "cunning",
-              "ratio": 0.3
+              "ratio": 0.34
             },
             {
               "stat": "power",
-              "ratio": 0.3
+              "ratio": 0.32
             }
-          ],
-          "weight": 0.16
+          ]
         },
         {
           "id": "forest_005",
           "name": "Deepwood Jump-the-Line Chief",
-          "rank": 5,
+          "description": "A deepwood chief that outpositions prey, dodges the first answer, and punishes with a heavy rush.",
+          "level_min": 11,
+          "level_max": 15,
           "stats": [
             {
               "stat": "cunning",
-              "ratio": 0.24
+              "ratio": 0.32
             },
             {
               "stat": "evasion",
-              "ratio": 0.22
+              "ratio": 0.27
             },
             {
               "stat": "power",
-              "ratio": 0.2
+              "ratio": 0.23
             }
-          ],
-          "weight": 0.14
+          ]
         }
       ]
     },
@@ -113,78 +118,83 @@
         {
           "id": "volcano_001",
           "name": "The Toughshell",
-          "rank": 1,
+          "description": "A furnace-bred wall of shell that shrugs off pressure and keeps forcing the hunt to slow down.",
+          "level_min": 21,
+          "level_max": 25,
           "stats": [
             {
               "stat": "guard",
-              "ratio": 0.4
+              "ratio": 0.5
             }
-          ],
-          "weight": 0.3
+          ]
         },
         {
           "id": "volcano_002",
           "name": "Scorchhide Brute",
-          "rank": 2,
+          "description": "A heat-mad brute that answers every opening with a punishing, body-breaking counterblow.",
+          "level_min": 41,
+          "level_max": 45,
           "stats": [
             {
               "stat": "power",
-              "ratio": 0.4
+              "ratio": 0.49
             }
-          ],
-          "weight": 0.16
+          ]
         },
         {
           "id": "volcano_003",
           "name": "Redrock Hornback",
-          "rank": 3,
+          "description": "A red-backed charger that pushes through attacks and wins by sheer mass and impact.",
+          "level_min": 3,
+          "level_max": 7,
           "stats": [
             {
               "stat": "guard",
-              "ratio": 0.3
+              "ratio": 0.37
             },
             {
               "stat": "power",
-              "ratio": 0.3
+              "ratio": 0.29
             }
-          ],
-          "weight": 0.26
+          ]
         },
         {
           "id": "volcano_004",
           "name": "Crater Squathead",
-          "rank": 4,
+          "description": "A stubborn crater squatter that refuses to budge and drags the fight into its own rhythm.",
+          "level_min": 31,
+          "level_max": 35,
           "stats": [
             {
               "stat": "guard",
-              "ratio": 0.3
+              "ratio": 0.35
             },
             {
               "stat": "cunning",
               "ratio": 0.3
             }
-          ],
-          "weight": 0.14
+          ]
         },
         {
           "id": "volcano_005",
           "name": "Magma Crooked-Chief",
-          "rank": 5,
+          "description": "A crooked chief that stands firm, hits hard, and twists the battle whenever hunters overcommit.",
+          "level_min": 13,
+          "level_max": 17,
           "stats": [
             {
               "stat": "guard",
-              "ratio": 0.24
+              "ratio": 0.31
             },
             {
               "stat": "power",
-              "ratio": 0.22
+              "ratio": 0.27
             },
             {
               "stat": "cunning",
-              "ratio": 0.2
+              "ratio": 0.23
             }
-          ],
-          "weight": 0.14
+          ]
         }
       ]
     },
@@ -207,78 +217,83 @@
         {
           "id": "desert_001",
           "name": "The Heat-Haze Hopper",
-          "rank": 1,
+          "description": "A mirage-like hopper that blurs at the edge of sight and makes clean hits feel unreliable.",
+          "level_min": 23,
+          "level_max": 27,
           "stats": [
             {
               "stat": "evasion",
-              "ratio": 0.4
+              "ratio": 0.51
             }
-          ],
-          "weight": 0.26
+          ]
         },
         {
           "id": "desert_002",
           "name": "Sandwatch Lizard",
-          "rank": 2,
+          "description": "A dune watcher that studies every approach and steals control of the fight through timing.",
+          "level_min": 45,
+          "level_max": 49,
           "stats": [
             {
               "stat": "cunning",
-              "ratio": 0.4
+              "ratio": 0.5
             }
-          ],
-          "weight": 0.18
+          ]
         },
         {
           "id": "desert_003",
           "name": "Windslip Lizard",
-          "rank": 3,
+          "description": "A wind-riding lizard that never stays where you expect and punishes hesitation from the flank.",
+          "level_min": 15,
+          "level_max": 19,
           "stats": [
             {
               "stat": "evasion",
-              "ratio": 0.3
+              "ratio": 0.35
             },
             {
               "stat": "cunning",
-              "ratio": 0.3
+              "ratio": 0.31
             }
-          ],
-          "weight": 0.24
+          ]
         },
         {
           "id": "desert_004",
           "name": "Sandslide Clawbeast",
-          "rank": 4,
+          "description": "A sliding clawbeast that comes in fast, hits hard, and keeps momentum through movement.",
+          "level_min": 5,
+          "level_max": 9,
           "stats": [
             {
               "stat": "evasion",
-              "ratio": 0.3
+              "ratio": 0.36
             },
             {
               "stat": "power",
               "ratio": 0.3
             }
-          ],
-          "weight": 0.18
+          ]
         },
         {
           "id": "desert_005",
           "name": "Quicksand Queue-Cutter Fang",
-          "rank": 5,
+          "description": "A quicksand stalker that cuts in from nowhere, stays elusive, and follows with a heavy bite.",
+          "level_min": 35,
+          "level_max": 39,
           "stats": [
             {
               "stat": "evasion",
-              "ratio": 0.24
+              "ratio": 0.3
             },
             {
               "stat": "cunning",
-              "ratio": 0.22
+              "ratio": 0.28
             },
             {
               "stat": "power",
-              "ratio": 0.2
+              "ratio": 0.24
             }
-          ],
-          "weight": 0.14
+          ]
         }
       ]
     },
@@ -301,78 +316,83 @@
         {
           "id": "tundra_001",
           "name": "The Frostland Headbutter",
-          "rank": 1,
+          "description": "A frostland bruiser that solves most problems by crashing straight through them.",
+          "level_min": 25,
+          "level_max": 29,
           "stats": [
             {
               "stat": "power",
-              "ratio": 0.4
+              "ratio": 0.51
             }
-          ],
-          "weight": 0.26
+          ]
         },
         {
           "id": "tundra_002",
           "name": "Whitebreath Greathorn",
-          "rank": 2,
+          "description": "A great-horned wall of frost that absorbs punishment and keeps marching forward.",
+          "level_min": 33,
+          "level_max": 37,
           "stats": [
             {
               "stat": "guard",
-              "ratio": 0.4
+              "ratio": 0.49
             }
-          ],
-          "weight": 0.18
+          ]
         },
         {
           "id": "tundra_003",
           "name": "Snowsplitter Beast",
-          "rank": 3,
+          "description": "A snow-cleaving beast that brings both weight and staying power to every collision.",
+          "level_min": 7,
+          "level_max": 11,
           "stats": [
             {
               "stat": "power",
-              "ratio": 0.3
+              "ratio": 0.36
             },
             {
               "stat": "guard",
               "ratio": 0.3
             }
-          ],
-          "weight": 0.26
+          ]
         },
         {
           "id": "tundra_004",
           "name": "Icefield Flankhorn",
-          "rank": 4,
+          "description": "A cold-plains hunter that pressures head-on, then suddenly turns to exploit your weak side.",
+          "level_min": 17,
+          "level_max": 21,
           "stats": [
             {
               "stat": "power",
-              "ratio": 0.3
+              "ratio": 0.34
             },
             {
               "stat": "cunning",
-              "ratio": 0.3
+              "ratio": 0.32
             }
-          ],
-          "weight": 0.14
+          ]
         },
         {
           "id": "tundra_005",
           "name": "Frozen Flats Break-In Chief",
-          "rank": 5,
+          "description": "A frozen-chief raider that forces entry with brute force, then keeps control through sheer presence.",
+          "level_min": 43,
+          "level_max": 47,
           "stats": [
             {
               "stat": "power",
-              "ratio": 0.24
+              "ratio": 0.31
             },
             {
               "stat": "guard",
-              "ratio": 0.22
+              "ratio": 0.29
             },
             {
               "stat": "cunning",
-              "ratio": 0.2
+              "ratio": 0.22
             }
-          ],
-          "weight": 0.16
+          ]
         }
       ]
     },
@@ -395,78 +415,83 @@
         {
           "id": "swamp_001",
           "name": "Mudwait Maw",
-          "rank": 1,
+          "description": "A patient swamp maw that waits beneath the mess and takes over the pace of the hunt.",
+          "level_min": 46,
+          "level_max": 50,
           "stats": [
             {
               "stat": "cunning",
-              "ratio": 0.4
+              "ratio": 0.51
             }
-          ],
-          "weight": 0.24
+          ]
         },
         {
           "id": "swamp_002",
           "name": "Reedshade Creeper",
-          "rank": 2,
+          "description": "A reed-hidden crawler that fades in and out of sight until solid hits become rare.",
+          "level_min": 37,
+          "level_max": 41,
           "stats": [
             {
               "stat": "evasion",
-              "ratio": 0.4
+              "ratio": 0.49
             }
-          ],
-          "weight": 0.2
+          ]
         },
         {
           "id": "swamp_003",
           "name": "Boglurker",
-          "rank": 3,
+          "description": "A bogside lurker that stays half-seen, half-gone, and always positioned to punish overreach.",
+          "level_min": 29,
+          "level_max": 33,
           "stats": [
             {
               "stat": "cunning",
-              "ratio": 0.3
+              "ratio": 0.35
             },
             {
               "stat": "evasion",
               "ratio": 0.3
             }
-          ],
-          "weight": 0.26
+          ]
         },
         {
           "id": "swamp_004",
           "name": "The Late-Staying Mireback",
-          "rank": 4,
+          "description": "A mireback that refuses to leave the ground it claims and wears hunters down through stubborn control.",
+          "level_min": 19,
+          "level_max": 23,
           "stats": [
             {
               "stat": "cunning",
-              "ratio": 0.3
+              "ratio": 0.34
             },
             {
               "stat": "guard",
-              "ratio": 0.3
+              "ratio": 0.31
             }
-          ],
-          "weight": 0.14
+          ]
         },
         {
           "id": "swamp_005",
           "name": "Mistslime Elder",
-          "rank": 5,
+          "description": "An old mist-slime that obscures the field, slips pressure, and lingers longer than it should.",
+          "level_min": 9,
+          "level_max": 13,
           "stats": [
             {
               "stat": "cunning",
-              "ratio": 0.24
+              "ratio": 0.3
             },
             {
               "stat": "evasion",
-              "ratio": 0.22
+              "ratio": 0.27
             },
             {
               "stat": "guard",
-              "ratio": 0.2
+              "ratio": 0.24
             }
-          ],
-          "weight": 0.16
+          ]
         }
       ]
     }

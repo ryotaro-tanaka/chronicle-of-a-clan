@@ -141,31 +141,23 @@ func (s *Session) executeNode(target *vfs.Node, args []string) {
 }
 
 func (s *Session) handleCreateBoss(args []string) {
-	region := "forest"
-	if len(args) >= 1 && args[0] != "" {
-		region = args[0]
+	if len(args) < 1 || args[0] == "" {
+		fmt.Fprintln(s.err, "create_boss requires profile_id")
+		return
 	}
-	questLevel := 1
-	if len(args) >= 2 {
-		if v, err := parseInt(args[1]); err == nil && v > 0 {
-			questLevel = v
-		} else {
-			fmt.Fprintf(s.err, "invalid quest level: %s\n", args[1])
-			return
-		}
-	}
+	profileID := args[0]
 
 	var seedOpt *int64
-	if len(args) >= 3 {
-		if v, err := parseInt64(args[2]); err == nil {
+	if len(args) >= 2 {
+		if v, err := parseInt64(args[1]); err == nil {
 			seedOpt = &v
 		} else {
-			fmt.Fprintf(s.err, "invalid seed: %s\n", args[2])
+			fmt.Fprintf(s.err, "invalid seed: %s\n", args[1])
 			return
 		}
 	}
 
-	boss, err := monsters.GenerateBoss(region, questLevel, seedOpt)
+	boss, err := monsters.GenerateBoss(profileID, seedOpt)
 	if err != nil {
 		fmt.Fprintf(s.err, "create_boss failed: %v\n", err)
 		return

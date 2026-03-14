@@ -61,15 +61,9 @@ Numeric tuning values only: thresholds, tables, coefficients, and curves referen
 - `BOSS_PROFILE_VARIATION`
   - Per-region variation rules keyed by the number of focused stats (`focused_stats_count`).
   - Backed by: `regions.{region}.variation[]` in `data/boss_profiles.json`.
-- `BOSS_PROFILE_RANK`
-  - Per-profile fixed tier (Rank) used for progression/unlock logic.
-  - Backed by: `regions.{region}.profiles[].rank` in `data/boss_profiles.json`.
-- `QUEST_LEVEL_MONSTER_LEVEL_RANGE`
-  - Maps Quest Level IDs to minimum/maximum allowed Monster Levels.
-  - Backed by: `quest_levels[]` in `data/levels.json`.
+- `BOSS_PROFILE_LEVEL_RANGE`
+  - Per-profile allowed level range (min and max level for that profile).
+  - Backed by: `regions.{region}.profiles[].level_min` and `level_max` in `data/boss_profiles.json`.
 - `MONSTER_LEVEL_STAT_BUDGET_MODEL`
   - Converts Monster Level into a total stat budget via base-at-level-1 and per-level increase segments.
   - Backed by: `monster_level_budget_model` in `data/levels.json`.
-- `OVERALL_RATING_MODEL`
-  - Maps the position of a Monster Level within its Quest Level range into a discrete Overall rating (e.g. 1–5).
-  - Backed by: `overall_rating` in `data/levels.json`.

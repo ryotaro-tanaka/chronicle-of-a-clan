@@ -21,12 +21,12 @@ func Status(v status.View) string {
 
 func Boss(b monsters.Boss) string {
 	return fmt.Sprintf(
-		"Boss: [Region=%s Rank=%d Overall=%d Profile=%s Name=\"%s\"]\nStats: Power=%d Guard=%d Evasion=%d Cunning=%d\n",
-		b.Region,
-		b.Rank,
-		b.Overall,
+		"Boss: profile_id=%s name=%q description=%q region=%s level=%d\nStats: Power=%d Guard=%d Evasion=%d Cunning=%d\n",
 		b.ProfileID,
 		b.Name,
+		b.Description,
+		b.Region,
+		b.Level,
 		b.Stats.Power,
 		b.Stats.Guard,
 		b.Stats.Evasion,

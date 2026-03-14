@@ -49,13 +49,44 @@ func TestStatusFromClanPathInvocation(t *testing.T) {
 	}
 }
 
-func TestDevCreateBossUnknownArgsDoNotPanic(t *testing.T) {
+func TestDevCreateBossInvalidProfileID(t *testing.T) {
 	var out, err bytes.Buffer
 	s := NewSession(save.State{}, &out, &err)
-	// region does not exist; should report an error, not panic.
-	s.ExecuteLine("dev/create_boss nowhere 1")
+	s.ExecuteLine("dev/create_boss nonexistent")
 	if err.String() == "" && out.String() == "" {
-		t.Fatalf("expected some output or error for dev/create_boss with invalid region")
+		t.Fatalf("expected error or message for dev/create_boss with invalid profile_id")
+	}
+	if !strings.Contains(err.String(), "create_boss") && !strings.Contains(err.String(), "profile") {
+		t.Fatalf("expected error to mention create_boss or profile, got err=%q", err.String())
+	}
+}
+
+func TestDevCreateBossMissingProfileID(t *testing.T) {
+	var out, err bytes.Buffer
+	s := NewSession(save.State{}, &out, &err)
+	s.ExecuteLine("dev/create_boss")
+	if !strings.Contains(err.String(), "profile_id") {
+		t.Fatalf("expected error to mention profile_id when missing, got err=%q", err.String())
+	}
+}
+
+func TestDevCreateBossReproducibleWithSeed(t *testing.T) {
+	var out1, err1 bytes.Buffer
+	s1 := NewSession(save.State{}, &out1, &err1)
+	s1.ExecuteLine("dev/create_boss forest_003 99999")
+
+	var out2, err2 bytes.Buffer
+	s2 := NewSession(save.State{}, &out2, &err2)
+	s2.ExecuteLine("dev/create_boss forest_003 99999")
+
+	if err1.String() != "" {
+		t.Fatalf("first create_boss failed: %s", err1.String())
+	}
+	if err2.String() != "" {
+		t.Fatalf("second create_boss failed: %s", err2.String())
+	}
+	if out1.String() != out2.String() {
+		t.Fatalf("same profile_id + seed should produce identical output; got %q vs %q", out1.String(), out2.String())
 	}
 }
 
