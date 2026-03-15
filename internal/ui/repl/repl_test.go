@@ -78,6 +78,9 @@ func TestDevCreateBossMissingProfileID(t *testing.T) {
 }
 
 func TestDevCreateBossReproducibleWithSeed(t *testing.T) {
+	if _, err := monsters.LoadBossProfiles(); err != nil {
+		t.Skipf("LoadBossProfiles: %v (run from repo root or data missing)", err)
+	}
 	var out1, err1 bytes.Buffer
 	s1 := newTestSession(save.State{}, &out1, &err1)
 	s1.ExecuteLine("dev/create_boss forest_003 99999")

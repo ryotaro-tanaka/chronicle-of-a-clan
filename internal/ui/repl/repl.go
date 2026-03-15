@@ -202,11 +202,10 @@ func (s *Session) complete(d prompt.Document) []prompt.Suggest {
 
 func (s *Session) completeLine(line string) []prompt.Suggest {
 	fields := strings.Fields(line)
-	if len(fields) == 0 {
-		return nil
-	}
-
 	commands := []prompt.Suggest{{Text: "ls"}, {Text: "cd"}, {Text: "status"}, {Text: "exit"}}
+	if len(fields) == 0 {
+		return commands
+	}
 	if len(fields) == 1 && !strings.HasSuffix(line, " ") {
 		first := fields[0]
 		suggest := prompt.FilterHasPrefix(commands, first, true)
