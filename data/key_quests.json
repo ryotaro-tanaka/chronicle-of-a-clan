@@ -1,0 +1,29 @@
+{
+    "key_quests": [
+      { "order": 1,  "profile_id": "forest_003"  },
+      { "order": 2,  "profile_id": "volcano_003" },
+      { "order": 3,  "profile_id": "desert_004"  },
+      { "order": 4,  "profile_id": "tundra_003"  },
+      { "order": 5,  "profile_id": "swamp_005"   },
+      { "order": 6,  "profile_id": "forest_005"  },
+      { "order": 7,  "profile_id": "volcano_005" },
+      { "order": 8,  "profile_id": "desert_003"  },
+      { "order": 9,  "profile_id": "tundra_004"  },
+      { "order": 10, "profile_id": "swamp_004"   },
+      { "order": 11, "profile_id": "volcano_001" },
+      { "order": 12, "profile_id": "desert_001"  },
+      { "order": 13, "profile_id": "tundra_001"  },
+      { "order": 14, "profile_id": "forest_004"  },
+      { "order": 15, "profile_id": "swamp_003"   },
+      { "order": 16, "profile_id": "volcano_004" },
+      { "order": 17, "profile_id": "tundra_002"  },
+      { "order": 18, "profile_id": "desert_005"  },
+      { "order": 19, "profile_id": "swamp_002"   },
+      { "order": 20, "profile_id": "forest_002"  },
+      { "order": 21, "profile_id": "volcano_002" },
+      { "order": 22, "profile_id": "tundra_005"  },
+      { "order": 23, "profile_id": "desert_002"  },
+      { "order": 24, "profile_id": "swamp_001"   },
+      { "order": 25, "profile_id": "forest_001"  }
+    ]
+  }

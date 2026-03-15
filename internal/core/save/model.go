@@ -14,6 +14,7 @@ type State struct {
 	InProgressCount     int
 	ChronicleEntryCount int
 	HasChronicle        bool
+	KeyQuestCurrentOrder int
 }
 
 const SupportedSaveVersion = 1

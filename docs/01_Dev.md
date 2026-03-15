@@ -72,10 +72,16 @@ When writing save files:
 - Write to `<name>.tmp`, flush, then rename to `<name>`.
 - Never partially overwrite a live save file.
 
+## Data (read-only at runtime)
+- Key quest to profile mapping: `data/key_quests.json` (see `04_TerminalUI.md` Quests virtual FS).
+
 ## JSON shape (minimal requirements)
 `clan.json` must contain at least:
 - `meta.save_version`
 - `clan` object with fields required by the Status view contract (see `04_TerminalUI.md`)
+
+Optional:
+- `key_quest_progress.current_order` (integer): gates which key quests are available for listing; if missing, treated as 1.
 
 ## Build artifacts
 - Build outputs are placed under `bin/` (and `bin/` is ignored by git).

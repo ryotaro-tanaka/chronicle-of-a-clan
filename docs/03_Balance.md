@@ -53,3 +53,17 @@ Numeric tuning values only: thresholds, tables, coefficients, and curves referen
 ### World ranking / rivals
 - RIVAL_UPDATE_INTERVAL_DAYS
 - RIVAL_FAME_CURVE
+
+### Boss generation (MVP)
+- `BOSS_PROFILES_FILE`
+  - Path to the boss profile data file.
+  - Backed by: `data/boss_profiles.json`.
+- `BOSS_PROFILE_VARIATION`
+  - Per-region variation rules keyed by the number of focused stats (`focused_stats_count`).
+  - Backed by: `regions.{region}.variation[]` in `data/boss_profiles.json`.
+- `BOSS_PROFILE_LEVEL_RANGE`
+  - Per-profile allowed level range (min and max level for that profile).
+  - Backed by: `regions.{region}.profiles[].level_min` and `level_max` in `data/boss_profiles.json`.
+- `MONSTER_LEVEL_STAT_BUDGET_MODEL`
+  - Converts Monster Level into a total stat budget via base-at-level-1 and per-level increase segments.
+  - Backed by: `monster_level_budget_model` in `data/levels.json`.
