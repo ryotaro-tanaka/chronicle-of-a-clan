@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"os"
+	"os/exec"
 	"path/filepath"
 
 	"chronicle-of-a-clan/internal/core/monsters"
@@ -14,7 +15,19 @@ import (
 )
 
 func main() {
-	os.Exit(run(os.Args, os.Stdout, os.Stderr))
+	code := run(os.Args, os.Stdout, os.Stderr)
+	// Must run before os.Exit; defer would not run.
+	restoreTerminal()
+	os.Exit(code)
+}
+
+// restoreTerminal restores the terminal to cooked mode after go-prompt exits.
+// go-prompt v0.2.6 leaves the terminal in raw mode (no echo); stty sane fixes it.
+// Linux/WSL only; no-op on Windows where stty is not available.
+func restoreTerminal() {
+    c := exec.Command("stty", "sane")  // または "/bin/stty", "-raw", "echo"
+    c.Stdin = os.Stdin
+    _ = c.Run()
 }
 
 func run(argv []string, out, errOut io.Writer) int {
