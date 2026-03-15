@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"os"
+	"strings"
 )
 
 // JSON structures for boss_profiles.json
@@ -85,6 +86,12 @@ func LoadBossProfiles() (*BossProfilesConfig, error) {
 	}
 
 	return &cfg, nil
+}
+
+// NameToSlug converts a monster display name to a directory slug: lowercase, spaces to underscores.
+// e.g. "Ambushjaw Gator" -> "ambushjaw_gator".
+func NameToSlug(name string) string {
+	return strings.ReplaceAll(strings.ToLower(strings.TrimSpace(name)), " ", "_")
 }
 
 // ProfileByID finds a profile by id across all regions. Returns the region id and the profile, or an error if not found.

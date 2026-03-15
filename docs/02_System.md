@@ -13,6 +13,9 @@ Defines what happens and in what order in the Core system.
 - “Monster” is the canonical term.
 - Monsters are classified into minor monsters and boss monsters.
 
+## Key quest availability (listing)
+- `key_quest_progress.current_order` in the save controls listing: `quests/keys/` shows only the key quest whose `order` equals `current_order` (the next story quest). `quests/<region>/` shows all key quests with `order <= current_order` in that region (see `04_TerminalUI.md`).
+
 ## Time & Processing Model (Invariants)
 - Time unit: day
 - `AdvanceDays(days)` runs the Daily Tick `days` times.

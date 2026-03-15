@@ -14,17 +14,19 @@ import (
 )
 
 type Session struct {
-	state save.State
-	root  *vfs.Node
-	cwd   *vfs.Node
-	out   io.Writer
-	err   io.Writer
-	done  bool
+	state        save.State
+	root         *vfs.Node
+	cwd          *vfs.Node
+	bossProfiles *monsters.BossProfilesConfig
+	out          io.Writer
+	err          io.Writer
+	done         bool
 }
 
-func NewSession(state save.State, out, err io.Writer) *Session {
-	root := vfs.NewTree()
-	return &Session{state: state, root: root, cwd: root, out: out, err: err}
+// NewSession creates a session with the given state and pre-built VFS root (including quests).
+// bossProfiles is used to render the quest info view.
+func NewSession(state save.State, root *vfs.Node, bossProfiles *monsters.BossProfilesConfig, out, err io.Writer) *Session {
+	return &Session{state: state, root: root, cwd: root, bossProfiles: bossProfiles, out: out, err: err}
 }
 
 func (s *Session) RunPrompt() int {
@@ -137,7 +139,24 @@ func (s *Session) executeNode(target *vfs.Node, args []string) {
 		s.done = true
 	case "create_boss":
 		s.handleCreateBoss(args)
+	case "info":
+		s.handleQuestInfo(target)
+	default:
+		fmt.Fprintf(s.err, "unknown view or action: %s\n", target.Name())
 	}
+}
+
+func (s *Session) handleQuestInfo(target *vfs.Node) {
+	if target.ProfileID == "" || s.bossProfiles == nil {
+		fmt.Fprintln(s.err, "info: no profile associated")
+		return
+	}
+	_, profile, err := s.bossProfiles.ProfileByID(target.ProfileID)
+	if err != nil {
+		fmt.Fprintf(s.err, "info failed: %v\n", err)
+		return
+	}
+	fmt.Fprint(s.out, format.QuestInfo(profile))
 }
 
 func (s *Session) handleCreateBoss(args []string) {

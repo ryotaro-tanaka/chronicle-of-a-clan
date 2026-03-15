@@ -34,6 +34,9 @@ type clanFile struct {
 		Crafting  []json.RawMessage `json:"crafting"`
 		Upgrading []json.RawMessage `json:"upgrading"`
 	} `json:"in_progress"`
+	KeyQuestProgress struct {
+		CurrentOrder int `json:"current_order"`
+	} `json:"key_quest_progress"`
 }
 
 func Load(slotName string) (State, error) {
@@ -79,20 +82,26 @@ func Load(slotName string) (State, error) {
 		return State{}, err
 	}
 
+	keyOrder := clan.KeyQuestProgress.CurrentOrder
+	if keyOrder < 1 {
+		keyOrder = 1
+	}
+
 	return State{
-		SaveDir:             saveDir,
-		SaveVersion:         clan.Meta.SaveVersion,
-		ClanName:            clan.Clan.Name,
-		CurrentDay:          clan.Clan.Day,
-		Gold:                clan.Clan.Gold,
-		Fame:                clan.Clan.Fame,
-		MembersCount:        len(clan.Members),
-		ActiveQuestsCount:   questsCount,
-		WeaponsCount:        len(clan.Inventory.Weapons),
-		ArmorCount:          len(clan.Inventory.Armor),
-		InProgressCount:     len(clan.InProgress.Crafting) + len(clan.InProgress.Upgrading),
-		ChronicleEntryCount: chronicleCount,
-		HasChronicle:        hasChronicle,
+		SaveDir:              saveDir,
+		SaveVersion:          clan.Meta.SaveVersion,
+		ClanName:             clan.Clan.Name,
+		CurrentDay:           clan.Clan.Day,
+		Gold:                 clan.Clan.Gold,
+		Fame:                 clan.Clan.Fame,
+		MembersCount:         len(clan.Members),
+		ActiveQuestsCount:    questsCount,
+		WeaponsCount:         len(clan.Inventory.Weapons),
+		ArmorCount:           len(clan.Inventory.Armor),
+		InProgressCount:      len(clan.InProgress.Crafting) + len(clan.InProgress.Upgrading),
+		ChronicleEntryCount:  chronicleCount,
+		HasChronicle:         hasChronicle,
+		KeyQuestCurrentOrder: keyOrder,
 	}, nil
 }
 

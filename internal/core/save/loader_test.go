@@ -112,3 +112,39 @@ func TestInit_FailsForInvalidSlotName(t *testing.T) {
 		t.Fatalf("expected invalid slot name error, got %v", err)
 	}
 }
+
+func TestLoad_KeyQuestProgressLoaded(t *testing.T) {
+	dir := t.TempDir()
+	withCWD(t, dir)
+	slotDir := filepath.Join("saves", "slot1")
+	if err := os.MkdirAll(slotDir, 0o755); err != nil {
+		t.Fatalf("mkdir: %v", err)
+	}
+	writeFile(t, slotDir, "clan.json", `{"meta":{"save_version":1},"clan":{"name":"A","day":1,"gold":0,"fame":0},"key_quest_progress":{"current_order":5}}`)
+
+	state, err := Load("slot1")
+	if err != nil {
+		t.Fatalf("Load: %v", err)
+	}
+	if state.KeyQuestCurrentOrder != 5 {
+		t.Fatalf("expected KeyQuestCurrentOrder 5, got %d", state.KeyQuestCurrentOrder)
+	}
+}
+
+func TestLoad_KeyQuestProgressMissingDefaultsToOne(t *testing.T) {
+	dir := t.TempDir()
+	withCWD(t, dir)
+	slotDir := filepath.Join("saves", "slot1")
+	if err := os.MkdirAll(slotDir, 0o755); err != nil {
+		t.Fatalf("mkdir: %v", err)
+	}
+	writeFile(t, slotDir, "clan.json", `{"meta":{"save_version":1},"clan":{"name":"A","day":1,"gold":0,"fame":0}}`)
+
+	state, err := Load("slot1")
+	if err != nil {
+		t.Fatalf("Load: %v", err)
+	}
+	if state.KeyQuestCurrentOrder != 1 {
+		t.Fatalf("expected KeyQuestCurrentOrder 1 when missing, got %d", state.KeyQuestCurrentOrder)
+	}
+}

@@ -6,8 +6,11 @@ import (
 	"os"
 	"path/filepath"
 
+	"chronicle-of-a-clan/internal/core/monsters"
+	"chronicle-of-a-clan/internal/core/quests"
 	"chronicle-of-a-clan/internal/core/save"
 	"chronicle-of-a-clan/internal/ui/repl"
+	"chronicle-of-a-clan/internal/ui/vfs"
 )
 
 func main() {
@@ -45,7 +48,22 @@ func run(argv []string, out, errOut io.Writer) int {
 		return 1
 	}
 
-	session := repl.NewSession(state, out, errOut)
+	keyQuestEntries, err := quests.LoadKeyQuests()
+	if err != nil {
+		fmt.Fprintf(errOut, "Failed to load key quests: %v\n", err)
+		return 1
+	}
+
+	bossProfiles, err := monsters.LoadBossProfiles()
+	if err != nil {
+		fmt.Fprintf(errOut, "Failed to load boss profiles: %v\n", err)
+		return 1
+	}
+
+	root := vfs.NewTree()
+	vfs.AttachQuests(root, state, keyQuestEntries, bossProfiles)
+
+	session := repl.NewSession(state, root, bossProfiles, out, errOut)
 	return session.RunPrompt()
 }
 

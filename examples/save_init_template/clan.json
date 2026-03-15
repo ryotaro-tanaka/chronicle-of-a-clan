@@ -17,5 +17,8 @@
   "in_progress": {
     "crafting": [],
     "upgrading": []
+  },
+  "key_quest_progress": {
+    "current_order": 1
   }
 }

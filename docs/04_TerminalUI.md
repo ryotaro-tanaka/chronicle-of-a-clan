@@ -49,6 +49,15 @@ Defines the terminal UI contract: inputs, outputs, and presentation rules. This 
 - Invocation by path is allowed (examples):
   - `clan/status`
   - `../exit`
+  - `quests/keys/hunt_ambushjaw_gator/info`
+
+### Quests (virtual FS)
+- Root `ls` includes `[DIR] quests`.
+- `quests/` children: `[DIR] keys`, `[DIR] forest`, `[DIR] volcano`, `[DIR] desert`, `[DIR] tundra`, `[DIR] swamp`.
+- **`quests/keys/`**: Lists only the key quest whose `order` equals `key_quest_progress.current_order` (the single “next” quest to advance the story). One quest per order, so `keys/` shows one entry. Each entry: `[DIR] hunt_<monster_slug>`.
+- **`quests/<region>/`**: Lists all key quests with `order <= current_order` in that region (filter by the profile’s region). Each entry: `[DIR] hunt_<monster_slug>` (e.g. `hunt_ambushjaw_gator`).
+- Under each `hunt_<slug>`: `[VIEW] info`. Invocation by path (e.g. `quests/keys/hunt_ambushjaw_gator/info`) is supported.
+- **Quest info view contract**: Output lines: `Name: <name>`, `Lv: <min>-<max>`, `Specialties: <stats>`, `Reward:`, `Description: <description>`. Reward is empty for MVP.
 
 ## Completion (go-prompt)
 - Completion includes:
