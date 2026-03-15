@@ -1,0 +1,82 @@
+name: MVP Spec SNS Summary
+
+on:
+  push:
+    paths:
+      - docs/mvp/**
+  workflow_dispatch:
+
+jobs:
+  post-summary:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve commit range
+        id: range
+        shell: bash
+        run: |
+          set -euo pipefail
+          BASE="${{ github.event.before }}"
+          HEAD="${{ github.sha }}"
+
+          if [[ -z "$BASE" || "$BASE" == "0000000000000000000000000000000000000000" ]]; then
+            BASE=$(git rev-parse "${HEAD}^")
+          fi
+
+          echo "base=$BASE" >> "$GITHUB_OUTPUT"
+          echo "head=$HEAD" >> "$GITHUB_OUTPUT"
+
+      - name: Build SNS message
+        id: message
+        shell: bash
+        env:
+          REPO_URL: "https://github.com/${{ github.repository }}/commit/${{ github.sha }}"
+        run: |
+          set -euo pipefail
+          python3 scripts/social/build_mvp_summary.py \
+            --base "${{ steps.range.outputs.base }}" \
+            --head "${{ steps.range.outputs.head }}" \
+            --repo-url "$REPO_URL" \
+            --output mvp_summary.txt
+
+          if [[ -s mvp_summary.txt ]]; then
+            echo "has_message=true" >> "$GITHUB_OUTPUT"
+            {
+              echo 'text<<EOF'
+              cat mvp_summary.txt
+              echo 'EOF'
+            } >> "$GITHUB_OUTPUT"
+          else
+            echo "has_message=false" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Post to X
+        if: steps.message.outputs.has_message == 'true' && secrets.X_API_KEY != '' && secrets.X_API_SECRET != '' && secrets.X_ACCESS_TOKEN != '' && secrets.X_ACCESS_TOKEN_SECRET != ''
+        uses: ethomson/send-tweet-action@v1
+        with:
+          status: ${{ steps.message.outputs.text }}
+          consumer-key: ${{ secrets.X_API_KEY }}
+          consumer-secret: ${{ secrets.X_API_SECRET }}
+          access-token: ${{ secrets.X_ACCESS_TOKEN }}
+          access-token-secret: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
+
+      - name: Post to Threads
+        if: steps.message.outputs.has_message == 'true' && secrets.THREADS_USER_ID != '' && secrets.THREADS_ACCESS_TOKEN != ''
+        shell: bash
+        env:
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+        run: |
+          set -euo pipefail
+          bash scripts/social/post_to_threads.sh mvp_summary.txt
+
+      - name: Notice when secrets are missing
+        if: steps.message.outputs.has_message == 'true' && (secrets.X_API_KEY == '' || secrets.X_API_SECRET == '' || secrets.X_ACCESS_TOKEN == '' || secrets.X_ACCESS_TOKEN_SECRET == '' || secrets.THREADS_USER_ID == '' || secrets.THREADS_ACCESS_TOKEN == '')
+        run: |
+          echo "One or more SNS secrets are missing. Configure repository secrets to enable posting."
