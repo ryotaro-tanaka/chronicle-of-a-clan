@@ -20,6 +20,7 @@ def changed_docs(base: str, head: str) -> list[str]:
         "git",
         "diff",
         "--name-only",
+        "--diff-filter=AM",
         f"{base}..{head}",
         "--",
         "docs/mvp",

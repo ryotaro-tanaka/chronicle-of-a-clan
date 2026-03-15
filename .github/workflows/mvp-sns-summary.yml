@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - docs/mvp/**
+  pull_request:
+    paths:
+      - docs/mvp/**
   workflow_dispatch:
 
 jobs:
@@ -22,11 +25,20 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          BASE="${{ github.event.before }}"
+          BASE="${{ github.event.before || '' }}"
           HEAD="${{ github.sha }}"
 
+          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            BASE="${{ github.event.pull_request.base.sha }}"
+            HEAD="${{ github.event.pull_request.head.sha }}"
+          fi
+
           if [[ -z "$BASE" || "$BASE" == "0000000000000000000000000000000000000000" ]]; then
-            BASE=$(git rev-parse "${HEAD}^")
+            if git rev-parse "${HEAD}^" >/dev/null 2>&1; then
+              BASE=$(git rev-parse "${HEAD}^")
+            else
+              BASE=$(git hash-object -t tree /dev/null)
+            fi
           fi
 
           echo "base=$BASE" >> "$GITHUB_OUTPUT"
@@ -57,7 +69,7 @@ jobs:
           fi
 
       - name: Post to X
-        if: steps.message.outputs.has_message == 'true' && secrets.X_API_KEY != '' && secrets.X_API_SECRET != '' && secrets.X_ACCESS_TOKEN != '' && secrets.X_ACCESS_TOKEN_SECRET != ''
+        if: github.event_name == 'push' && steps.message.outputs.has_message == 'true' && secrets.X_API_KEY != '' && secrets.X_API_SECRET != '' && secrets.X_ACCESS_TOKEN != '' && secrets.X_ACCESS_TOKEN_SECRET != ''
         uses: ethomson/send-tweet-action@v1
         with:
           status: ${{ steps.message.outputs.text }}
@@ -67,7 +79,7 @@ jobs:
           access-token-secret: ${{ secrets.X_ACCESS_TOKEN_SECRET }}
 
       - name: Post to Threads
-        if: steps.message.outputs.has_message == 'true' && secrets.THREADS_USER_ID != '' && secrets.THREADS_ACCESS_TOKEN != ''
+        if: github.event_name == 'push' && steps.message.outputs.has_message == 'true' && secrets.THREADS_USER_ID != '' && secrets.THREADS_ACCESS_TOKEN != ''
         shell: bash
         env:
           THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
@@ -77,6 +89,12 @@ jobs:
           bash scripts/social/post_to_threads.sh mvp_summary.txt
 
       - name: Notice when secrets are missing
-        if: steps.message.outputs.has_message == 'true' && (secrets.X_API_KEY == '' || secrets.X_API_SECRET == '' || secrets.X_ACCESS_TOKEN == '' || secrets.X_ACCESS_TOKEN_SECRET == '' || secrets.THREADS_USER_ID == '' || secrets.THREADS_ACCESS_TOKEN == '')
+        if: github.event_name == 'push' && steps.message.outputs.has_message == 'true' && (secrets.X_API_KEY == '' || secrets.X_API_SECRET == '' || secrets.X_ACCESS_TOKEN == '' || secrets.X_ACCESS_TOKEN_SECRET == '' || secrets.THREADS_USER_ID == '' || secrets.THREADS_ACCESS_TOKEN == '')
         run: |
           echo "One or more SNS secrets are missing. Configure repository secrets to enable posting."
+
+      - name: Show summary in PR logs
+        if: github.event_name == 'pull_request' && steps.message.outputs.has_message == 'true'
+        run: |
+          echo "PR detected docs/mvp changes. Generated summary:"
+          cat mvp_summary.txt

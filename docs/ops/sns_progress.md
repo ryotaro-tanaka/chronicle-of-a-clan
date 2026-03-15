@@ -32,15 +32,25 @@
 - `THREADS_USER_ID`
 - `THREADS_ACCESS_TOKEN`
 
+> 設定場所: GitHub リポジトリの **Settings > Secrets and variables > Actions > New repository secret**
+
 ## 投稿フロー
 
-1. push で `docs/mvp/**` が変更される
+1. `docs/mvp/**` の変更が push されたら workflow が起動
 2. 変更ファイルと差分の追加行から「まとめ」を自動生成
 3. X と Threads に投稿（Secrets が揃っている場合のみ）
 4. Secrets 不足時は workflow のログに通知だけ出して終了
 
-## 補足
+## 検知タイミング（重要）
 
-- 投稿文にはコミット URL が含まれます。
+- **投稿実行は push 時のみ** です（ローカルコミットだけでは動きません）。
+- `pull_request` でも要約生成は動作し、PR の Actions ログで確認できます。
+- 新規作成ファイル（例: `docs/mvp/08.md`）も `docs/mvp/**` に含まれるため検知対象です。
+
+## 投稿内容
+
+- 基本は「変更された `0X.md` ファイルの要約」です。
+- 具体的には、差分の **追加行** からハイライトを抽出して投稿文を作ります。
+- 投稿文にはコミット URL を含めます。
 - 文字数超過時は末尾を省略して投稿できる長さに丸めます。
 - 手動実行は `workflow_dispatch` から可能です。
