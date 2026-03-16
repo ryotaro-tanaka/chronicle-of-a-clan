@@ -1,0 +1,25 @@
+name: Threads Post
+
+on:
+  push:
+    paths:
+      - docs/mvp/*.md
+
+jobs:
+  post-to-threads:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Post ready social updates to Threads
+        env:
+          YOUR_LONG_LIVED_TOKEN: ${{ secrets.YOUR_LONG_LIVED_TOKEN }}
+          GITHUB_BEFORE: ${{ github.event.before }}
+          GITHUB_SHA: ${{ github.sha }}
+        run: python .github/scripts/post_threads_from_mvp.py
