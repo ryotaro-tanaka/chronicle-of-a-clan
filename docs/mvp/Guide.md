@@ -14,7 +14,25 @@ Each stage doc must include:
 - Definition of Done (DoD)
 - Required Spec Updates (links to owning documents/sections)
 - Test Checklist
+- Social
 - Notes / Open Questions (optional)
+
+## Social
+Use `## Social` only for short, outward-facing update text that is safe to post as-is.
+
+Format:
+```md
+## Social
+Ready: true
+...
+```
+
+Rules:
+- Keep it short and user-facing.
+- Write it as a completed update, not a plan.
+- The content under `Ready: true` should be post-ready as written.
+- If bilingual text is included, write it as plain post content, not as labeled metadata.
+- Use `Ready: true` only when the text is safe for automated posting.
 
 ## Don’ts (What Not To Write Here)
 - Do not duplicate final rules from `02_System.md`. Link to the owning sections instead.
