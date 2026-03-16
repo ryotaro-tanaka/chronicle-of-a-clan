@@ -19,7 +19,7 @@ jobs:
 
       - name: Post ready social updates to Threads
         env:
-          YOUR_LONG_LIVED_TOKEN: ${{ secrets.YOUR_LONG_LIVED_TOKEN }}
+          THREADS_LONG_LIVED_TOKEN: ${{ secrets.THREADS_LONG_LIVED_TOKEN }}
           GITHUB_BEFORE: ${{ github.event.before }}
           GITHUB_SHA: ${{ github.sha }}
         run: python .github/scripts/post_threads_from_mvp.py
