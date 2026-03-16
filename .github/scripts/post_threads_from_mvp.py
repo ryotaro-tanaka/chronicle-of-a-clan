@@ -85,10 +85,10 @@ def http_post_form(url, form_data):
 def main():
     before = os.getenv("GITHUB_BEFORE", "")
     after = os.getenv("GITHUB_SHA", "")
-    token = os.getenv("YOUR_LONG_LIVED_TOKEN", "")
+    token = os.getenv("THREADS_LONG_LIVED_TOKEN", "")
 
     if not token:
-        print("YOUR_LONG_LIVED_TOKEN is not set; skipping Threads posting.")
+        print("THREADS_LONG_LIVED_TOKEN is not set; skipping Threads posting.")
         return 0
 
     if not after:
