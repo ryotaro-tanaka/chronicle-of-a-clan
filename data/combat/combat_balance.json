@@ -1,0 +1,9 @@
+{
+    "standard_party_size": 4,
+    "success_progress": 100,
+    "retreat_injury_threshold": 10,
+    "base_progress": 30,
+    "base_injury": 1,
+    "scale": 10,
+    "success_priority_over_retreat_same_day": true
+}
