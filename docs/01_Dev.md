@@ -14,13 +14,9 @@ Implementation constraints and technical decisions that affect long-term maintai
 ## Project layout (minimal)
 - Entry point: `cmd/coc/main.go`
 - Core (domain, persistence, save validation): `internal/core/`
-- UI (REPL, virtual FS, formatting): `internal/ui/` (or equivalent)
+- UI (terminal TUI, virtual FS, formatting): `internal/ui/` (or equivalent)
 - Docs: `docs/`
-- Examples: `examples/`
-
-## Interactive input library
-- REPL uses `go-prompt` for line editing, history, and tab completion.
-- The virtual FS model remains authoritative; completion candidates are derived from the FS tree.
+- Data templates: `data/save_init/`
 
 ## Save Boundary (slot-based)
 This project is designed so that copying a save slot directory reproduces the same game state.
@@ -47,8 +43,8 @@ This project is designed so that copying a save slot directory reproduces the sa
 - If the target slot already exists: fail (no overwrite by default).
 
 ### Template directory
-- Init template lives at: `examples/save_init_template/`
-- Must include at least: `examples/save_init_template/clan.json`
+- Init template lives at: `data/save_init/`
+- Must include at least: `data/save_init/clan.json`
 
 ### Save files
 Required:

@@ -75,10 +75,10 @@ func TestLoad_UnsupportedSaveVersion(t *testing.T) {
 func TestInit_CreatesSlotFromTemplate(t *testing.T) {
 	dir := t.TempDir()
 	withCWD(t, dir)
-	if err := os.MkdirAll(filepath.Join("examples", "save_init_template"), 0o755); err != nil {
+	if err := os.MkdirAll(filepath.Join("data", "save_init"), 0o755); err != nil {
 		t.Fatalf("mkdir: %v", err)
 	}
-	writeFile(t, filepath.Join("examples", "save_init_template"), "clan.json", `{"meta":{"save_version":1},"clan":{"name":"A"}}`)
+	writeFile(t, filepath.Join("data", "save_init"), "clan.json", `{"meta":{"save_version":1},"clan":{"name":"A"}}`)
 
 	if err := Init("slot1"); err != nil {
 		t.Fatalf("Init failed: %v", err)
@@ -92,10 +92,10 @@ func TestInit_CreatesSlotFromTemplate(t *testing.T) {
 func TestInit_FailsWhenSlotExists(t *testing.T) {
 	dir := t.TempDir()
 	withCWD(t, dir)
-	if err := os.MkdirAll(filepath.Join("examples", "save_init_template"), 0o755); err != nil {
+	if err := os.MkdirAll(filepath.Join("data", "save_init"), 0o755); err != nil {
 		t.Fatalf("mkdir template: %v", err)
 	}
-	writeFile(t, filepath.Join("examples", "save_init_template"), "clan.json", "{}")
+	writeFile(t, filepath.Join("data", "save_init"), "clan.json", "{}")
 	if err := os.MkdirAll(filepath.Join("saves", "slot1"), 0o755); err != nil {
 		t.Fatalf("mkdir slot: %v", err)
 	}
