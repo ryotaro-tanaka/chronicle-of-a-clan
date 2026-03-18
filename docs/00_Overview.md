@@ -47,11 +47,6 @@ However, the full save state is stored in a local file, making a given saved sta
 Core owns rules and state; UI owns input and presentation.
 The UI must not contain game rules.
 
-### Boss hunts (MVP combat shape, no tuning)
-- No Momentum: each day updates progress and injury from party vs boss stats.
-- Armor (PROT) is the main survivability lever; weapon bonuses are supporting.
-- Design is tuned mainly for a full four-member party at similar level to the boss; other party sizes and gear levels remain valid but are secondary targets.
-
 ---
 
 ## Experience at a glance (No numbers, no tuning)
