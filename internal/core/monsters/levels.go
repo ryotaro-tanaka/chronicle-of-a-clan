@@ -22,7 +22,7 @@ type LevelsConfig struct {
 	MemberLevelBudgetModel  LevelBudgetModel `json:"member_level_budget_model"`
 }
 
-const levelsPath = "data/levels.json"
+const levelsPath = "data/combat/levels.json"
 
 // LoadLevels loads level budget configuration from JSON.
 func LoadLevels() (*LevelsConfig, error) {

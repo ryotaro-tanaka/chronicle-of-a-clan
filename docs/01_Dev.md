@@ -73,7 +73,27 @@ When writing save files:
 - Never partially overwrite a live save file.
 
 ## Data (read-only at runtime)
-- Key quest to profile mapping: `data/key_quests.json` (see `04_TerminalUI.md` Quests virtual FS).
+Paths are resolved from the **repository root** (working directory). Game rules and formulas that *use* this data are in `02_System.md` / `03_Balance.md`.
+
+### `data/quests/key_quests.json`
+- Key quest list: `order` → boss `profile_id`. Drives quest listing with save `key_quest_progress.current_order` (see `04_TerminalUI.md`).
+
+### `data/combat/levels.json`
+- `monster_level_budget_model` — segments for total monster stat budget by level.
+- `member_level_budget_model` — segments for total member stat budget by level.
+- Other keys (e.g. `quest_levels`, `overall_rating`) as referenced by Core.
+
+### `data/combat/boss_profiles.json`
+- Per-region `profiles[]` (`id`, `name`, `description`, `level_min`, `level_max`, `stats` ratios) and `variation[]`. Used for boss generation; **no** `material_id` on profiles (materials reverse-link via `source_profile_id`).
+
+### `data/combat/member_growth_types.json`
+- Maps growth type → distribution of raw member budget into Might / Mastery / Tactics / Survival.
+
+### `data/items/materials.json`
+- Material entries; each may include `source_profile_id` linking to the boss profile that drops or defines that material.
+
+### `data/items/equipments/rental_equipment.json` / `crafted_equipment.json`
+- Rental and crafted weapon/armor definitions. Crafted recipes reference `material_id` in `materials.json`.
 
 ## JSON shape (minimal requirements)
 `clan.json` must contain at least:

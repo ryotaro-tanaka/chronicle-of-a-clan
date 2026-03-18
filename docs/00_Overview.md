@@ -9,12 +9,15 @@ This document describes the game’s design intent and the player experience at 
 - `03_Balance.md` defines numeric tuning values only (thresholds, tables, coefficients, curves).
 - `04_TerminalUI.md` defines the terminal UI contract (inputs/outputs/presentation), not game rules.
 - `docs/mvp/` defines staged scope and acceptance criteria; it is not an authoritative source for final rules.
+- `data/` defines read-only JSON inputs (paths and file roles are documented in `01_Dev.md`).
 
 ## Global Don’ts
 - Do not duplicate rules across documents. Prefer links to the owning file.
-- Do not put tuning numbers outside `03_Balance.md`.
+- Do not put tuning numbers, piecewise curves, or combat formulas outside `03_Balance.md`.
 - Do not put UI formatting/command output text in `02_System.md`.
 - Do not put game rules or tuning numbers in `04_TerminalUI.md`.
+- Do not add new top-level spec files under `docs/` lightly; prefer evolving `01_Dev.md`–`04_TerminalUI.md` and stage docs under `docs/mvp/`.
+- Do not edit `00_Overview.md` for rule or tuning changes; it is a stable entry point and should change only when the overall documentation structure is refactored.
 
 ---
 
@@ -43,6 +46,11 @@ However, the full save state is stored in a local file, making a given saved sta
 ### Responsibilities are strictly separated.
 Core owns rules and state; UI owns input and presentation.
 The UI must not contain game rules.
+
+### Boss hunts (MVP combat shape, no tuning)
+- No Momentum: each day updates progress and injury from party vs boss stats.
+- Armor (PROT) is the main survivability lever; weapon bonuses are supporting.
+- Design is tuned mainly for a full four-member party at similar level to the boss; other party sizes and gear levels remain valid but are secondary targets.
 
 ---
 

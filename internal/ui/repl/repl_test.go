@@ -178,11 +178,11 @@ func contains(ss []string, s string) bool {
 func TestQuestListAndInfo(t *testing.T) {
 	keyQuests, err := quests.LoadKeyQuests()
 	if err != nil {
-		t.Skipf("LoadKeyQuests: %v (missing data/key_quests.json?)", err)
+		t.Skipf("LoadKeyQuests: %v (missing data/quests/key_quests.json?)", err)
 	}
 	bossProfiles, err := monsters.LoadBossProfiles()
 	if err != nil {
-		t.Skipf("LoadBossProfiles: %v (missing data/boss_profiles.json?)", err)
+		t.Skipf("LoadBossProfiles: %v (missing data/combat/boss_profiles.json?)", err)
 	}
 	state := save.State{KeyQuestCurrentOrder: 1}
 	root := vfs.NewTree()

@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-const keyQuestsPath = "data/key_quests.json"
+const keyQuestsPath = "data/quests/key_quests.json"
 
 // Entry represents a single key quest (order + profile_id).
 type Entry struct {
@@ -18,7 +18,7 @@ type keyQuestsFile struct {
 	KeyQuests []Entry `json:"key_quests"`
 }
 
-// LoadKeyQuests loads the key quest list from data/key_quests.json.
+// LoadKeyQuests loads the key quest list from data/quests/key_quests.json.
 func LoadKeyQuests() ([]Entry, error) {
 	f, err := os.Open(keyQuestsPath)
 	if err != nil {
