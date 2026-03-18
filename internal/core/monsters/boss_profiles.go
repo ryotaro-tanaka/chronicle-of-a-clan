@@ -37,7 +37,7 @@ type BossProfilesConfig struct {
 	Regions map[string]RawRegion `json:"regions"`
 }
 
-const bossProfilesPath = "data/boss_profiles.json"
+const bossProfilesPath = "data/combat/boss_profiles.json"
 
 // LoadBossProfiles loads boss profile configuration from the default JSON file.
 func LoadBossProfiles() (*BossProfilesConfig, error) {

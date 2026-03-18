@@ -1,0 +1,39 @@
+{
+  "meta": {
+    "save_version": 1
+  },
+  "clan": {
+    "id": "clan_0001",
+    "name": "Chronicle Clan",
+    "day": 1,
+    "gold": 120,
+    "fame": 0
+  },
+  "members": [
+    {
+      "id": "member_0001",
+      "name": "Ralf",
+      "growth_type_id": "GROWTH_005",
+      "xp": 0,
+      "joined_day": 1
+    },
+    {
+      "id": "member_0002",
+      "name": "Mei",
+      "growth_type_id": "GROWTH_001",
+      "xp": 0,
+      "joined_day": 1
+    }
+  ],
+  "inventory": {
+    "weapons": [{"id": "CW_001", "count": 1}],
+    "armor": [{"id": "CA_001", "count": 1}]
+  },
+  "in_progress": {
+    "crafting": [],
+    "upgrading": []
+  },
+  "key_quest_progress": {
+    "current_order": 1
+  }
+}

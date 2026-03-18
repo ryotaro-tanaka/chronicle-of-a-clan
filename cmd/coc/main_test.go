@@ -47,7 +47,7 @@ func TestInitCreatesSaveSlot(t *testing.T) {
 	dir := t.TempDir()
 	withCWD(t, dir)
 
-	templateDir := filepath.Join("examples", "save_init_template")
+	templateDir := filepath.Join("data", "save_init")
 	if err := os.MkdirAll(templateDir, 0o755); err != nil {
 		t.Fatalf("mkdir template: %v", err)
 	}

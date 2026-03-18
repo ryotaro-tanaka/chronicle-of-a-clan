@@ -1,0 +1,286 @@
+{
+  "weapons": [
+    {
+      "id": "R_W_001",
+      "name": "Rental Iron Blade 01",
+      "level_min": 1,
+      "level_max": 5,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 1, "mastery": 0, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_002",
+      "name": "Rental Hunter Bow 01",
+      "level_min": 1,
+      "level_max": 5,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 1, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_003",
+      "name": "Rental Iron Blade 02",
+      "level_min": 6,
+      "level_max": 10,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 2, "mastery": 0, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_004",
+      "name": "Rental Hunter Bow 02",
+      "level_min": 6,
+      "level_max": 10,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 2, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_005",
+      "name": "Rental Iron Blade 03",
+      "level_min": 11,
+      "level_max": 15,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 3, "mastery": 0, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_006",
+      "name": "Rental Hunter Bow 03",
+      "level_min": 11,
+      "level_max": 15,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 3, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_007",
+      "name": "Rental Iron Blade 04",
+      "level_min": 16,
+      "level_max": 20,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 4, "mastery": 0, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_008",
+      "name": "Rental Hunter Bow 04",
+      "level_min": 16,
+      "level_max": 20,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 4, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_009",
+      "name": "Rental Iron Blade 05",
+      "level_min": 21,
+      "level_max": 25,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 5, "mastery": 0, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_010",
+      "name": "Rental Hunter Bow 05",
+      "level_min": 21,
+      "level_max": 25,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 5, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_011",
+      "name": "Rental Iron Blade 06",
+      "level_min": 26,
+      "level_max": 30,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 6, "mastery": 0, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_012",
+      "name": "Rental Hunter Bow 06",
+      "level_min": 26,
+      "level_max": 30,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 6, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_013",
+      "name": "Rental Iron Blade 07",
+      "level_min": 31,
+      "level_max": 35,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 7, "mastery": 0, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_014",
+      "name": "Rental Hunter Bow 07",
+      "level_min": 31,
+      "level_max": 35,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 7, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_015",
+      "name": "Rental Iron Blade 08",
+      "level_min": 36,
+      "level_max": 40,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 8, "mastery": 0, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_016",
+      "name": "Rental Hunter Bow 08",
+      "level_min": 36,
+      "level_max": 40,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 8, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_017",
+      "name": "Rental Iron Blade 09",
+      "level_min": 41,
+      "level_max": 45,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 9, "mastery": 0, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_018",
+      "name": "Rental Hunter Bow 09",
+      "level_min": 41,
+      "level_max": 45,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 9, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_019",
+      "name": "Rental Iron Blade 10",
+      "level_min": 46,
+      "level_max": 50,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 10, "mastery": 0, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_W_020",
+      "name": "Rental Hunter Bow 10",
+      "level_min": 46,
+      "level_max": 50,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 10, "tactics": 0, "survival": 0 },
+      "rental_cost_gold": 1
+    }
+  ],
+  "armor": [
+    {
+      "id": "R_A_001",
+      "name": "Rental Vest 01",
+      "level_min": 1,
+      "level_max": 5,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "prot": 18,
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_A_002",
+      "name": "Rental Vest 02",
+      "level_min": 6,
+      "level_max": 10,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "prot": 22,
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_A_003",
+      "name": "Rental Vest 03",
+      "level_min": 11,
+      "level_max": 15,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "prot": 26,
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_A_004",
+      "name": "Rental Vest 04",
+      "level_min": 16,
+      "level_max": 20,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "prot": 31,
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_A_005",
+      "name": "Rental Vest 05",
+      "level_min": 21,
+      "level_max": 25,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "prot": 37,
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_A_006",
+      "name": "Rental Vest 06",
+      "level_min": 26,
+      "level_max": 30,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "prot": 44,
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_A_007",
+      "name": "Rental Vest 07",
+      "level_min": 31,
+      "level_max": 35,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "prot": 50,
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_A_008",
+      "name": "Rental Vest 08",
+      "level_min": 36,
+      "level_max": 40,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "prot": 57,
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_A_009",
+      "name": "Rental Vest 09",
+      "level_min": 41,
+      "level_max": 45,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "prot": 65,
+      "rental_cost_gold": 1
+    },
+    {
+      "id": "R_A_010",
+      "name": "Rental Vest 10",
+      "level_min": 46,
+      "level_max": 50,
+      "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+      "prot": 73,
+      "rental_cost_gold": 1
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+    "materials": [
+      { "id": "MAT_001", "name": "Cutahead Crest",            "source_profile_id": "forest_001" },
+      { "id": "MAT_002", "name": "Leaf-Hider Horn",           "source_profile_id": "forest_002" },
+      { "id": "MAT_003", "name": "Ambushjaw Fang",            "source_profile_id": "forest_003" },
+      { "id": "MAT_004", "name": "Snatchjaw Claw",            "source_profile_id": "forest_004" },
+      { "id": "MAT_005", "name": "Deepwood Crest",            "source_profile_id": "forest_005" },
+  
+      { "id": "MAT_006", "name": "Toughshell Plate",          "source_profile_id": "volcano_001" },
+      { "id": "MAT_007", "name": "Scorchhide Horn",           "source_profile_id": "volcano_002" },
+      { "id": "MAT_008", "name": "Hornback Plate",            "source_profile_id": "volcano_003" },
+      { "id": "MAT_009", "name": "Crater Plate",              "source_profile_id": "volcano_004" },
+      { "id": "MAT_010", "name": "Magma Crest",               "source_profile_id": "volcano_005" },
+  
+      { "id": "MAT_011", "name": "Heat-Haze Gland",           "source_profile_id": "desert_001" },
+      { "id": "MAT_012", "name": "Sandwatch Crest",           "source_profile_id": "desert_002" },
+      { "id": "MAT_013", "name": "Windslip Fang",             "source_profile_id": "desert_003" },
+      { "id": "MAT_014", "name": "Sandslide Claw",            "source_profile_id": "desert_004" },
+      { "id": "MAT_015", "name": "Quicksand Fang",            "source_profile_id": "desert_005" },
+  
+      { "id": "MAT_016", "name": "Headbutter Horn",           "source_profile_id": "tundra_001" },
+      { "id": "MAT_017", "name": "Greathorn Plate",           "source_profile_id": "tundra_002" },
+      { "id": "MAT_018", "name": "Snowsplitter Plate",        "source_profile_id": "tundra_003" },
+      { "id": "MAT_019", "name": "Flankhorn Horn",            "source_profile_id": "tundra_004" },
+      { "id": "MAT_020", "name": "Break-In Crest",            "source_profile_id": "tundra_005" },
+  
+      { "id": "MAT_021", "name": "Mudwait Gland",             "source_profile_id": "swamp_001" },
+      { "id": "MAT_022", "name": "Reedshade Crest",           "source_profile_id": "swamp_002" },
+      { "id": "MAT_023", "name": "Boglurker Gland",           "source_profile_id": "swamp_003" },
+      { "id": "MAT_024", "name": "Mireback Plate",            "source_profile_id": "swamp_004" },
+      { "id": "MAT_025", "name": "Mistslime Gland",           "source_profile_id": "swamp_005" }
+    ]
+  }

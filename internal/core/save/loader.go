@@ -126,7 +126,7 @@ func Init(slotName string) error {
 		return fmt.Errorf("failed to create slot directory: %w", err)
 	}
 
-	template := filepath.Join("examples", "save_init_template")
+	template := filepath.Join("data", "save_init")
 	if err := copyDir(template, target); err != nil {
 		_ = os.RemoveAll(target)
 		return fmt.Errorf("failed to copy init template: %w", err)
