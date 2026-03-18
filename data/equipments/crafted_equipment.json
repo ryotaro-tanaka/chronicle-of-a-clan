@@ -1,0 +1,439 @@
+{
+    "weapons": [
+      {
+        "id": "CW_001",
+        "name": "Cutahead Crest Bow",
+        "material_id": "MAT_001",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 11, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_001", "count": 1 }]
+      },
+      {
+        "id": "CW_002",
+        "name": "Leaf-Hider Horn Bow",
+        "material_id": "MAT_002",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 10, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_002", "count": 1 }]
+      },
+      {
+        "id": "CW_003",
+        "name": "Ambushjaw Fang Bow",
+        "material_id": "MAT_003",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 2, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_003", "count": 1 }]
+      },
+      {
+        "id": "CW_004",
+        "name": "Snatchjaw Claw Bow",
+        "material_id": "MAT_004",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 8, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_004", "count": 1 }]
+      },
+      {
+        "id": "CW_005",
+        "name": "Deepwood Crest Bow",
+        "material_id": "MAT_005",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 4, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_005", "count": 1 }]
+      },
+  
+      {
+        "id": "CW_006",
+        "name": "Toughshell Plate Blade",
+        "material_id": "MAT_006",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 6, "mastery": 0, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_006", "count": 1 }]
+      },
+      {
+        "id": "CW_007",
+        "name": "Scorchhide Horn Blade",
+        "material_id": "MAT_007",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 10, "mastery": 0, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_007", "count": 1 }]
+      },
+      {
+        "id": "CW_008",
+        "name": "Hornback Plate Blade",
+        "material_id": "MAT_008",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 3, "mastery": 0, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_008", "count": 1 }]
+      },
+      {
+        "id": "CW_009",
+        "name": "Crater Plate Blade",
+        "material_id": "MAT_009",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 8, "mastery": 0, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_009", "count": 1 }]
+      },
+      {
+        "id": "CW_010",
+        "name": "Magma Crest Blade",
+        "material_id": "MAT_010",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 5, "mastery": 0, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_010", "count": 1 }]
+      },
+  
+      {
+        "id": "CW_011",
+        "name": "Heat-Haze Gland Bow",
+        "material_id": "MAT_011",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 7, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_011", "count": 1 }]
+      },
+      {
+        "id": "CW_012",
+        "name": "Sandwatch Crest Bow",
+        "material_id": "MAT_012",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 11, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_012", "count": 1 }]
+      },
+      {
+        "id": "CW_013",
+        "name": "Windslip Fang Bow",
+        "material_id": "MAT_013",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 5, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_013", "count": 1 }]
+      },
+      {
+        "id": "CW_014",
+        "name": "Sandslide Claw Bow",
+        "material_id": "MAT_014",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 3, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_014", "count": 1 }]
+      },
+      {
+        "id": "CW_015",
+        "name": "Quicksand Fang Bow",
+        "material_id": "MAT_015",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 9, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_015", "count": 1 }]
+      },
+  
+      {
+        "id": "CW_016",
+        "name": "Headbutter Horn Blade",
+        "material_id": "MAT_016",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 7, "mastery": 0, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_016", "count": 1 }]
+      },
+      {
+        "id": "CW_017",
+        "name": "Greathorn Plate Blade",
+        "material_id": "MAT_017",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 9, "mastery": 0, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_017", "count": 1 }]
+      },
+      {
+        "id": "CW_018",
+        "name": "Snowsplitter Plate Blade",
+        "material_id": "MAT_018",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 4, "mastery": 0, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_018", "count": 1 }]
+      },
+      {
+        "id": "CW_019",
+        "name": "Flankhorn Horn Blade",
+        "material_id": "MAT_019",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 6, "mastery": 0, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_019", "count": 1 }]
+      },
+      {
+        "id": "CW_020",
+        "name": "Break-In Crest Blade",
+        "material_id": "MAT_020",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 11, "mastery": 0, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_020", "count": 1 }]
+      },
+  
+      {
+        "id": "CW_021",
+        "name": "Mudwait Gland Bow",
+        "material_id": "MAT_021",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 11, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_021", "count": 1 }]
+      },
+      {
+        "id": "CW_022",
+        "name": "Reedshade Crest Bow",
+        "material_id": "MAT_022",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 10, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_022", "count": 1 }]
+      },
+      {
+        "id": "CW_023",
+        "name": "Boglurker Gland Bow",
+        "material_id": "MAT_023",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 8, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_023", "count": 1 }]
+      },
+      {
+        "id": "CW_024",
+        "name": "Mireback Plate Bow",
+        "material_id": "MAT_024",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 6, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_024", "count": 1 }]
+      },
+      {
+        "id": "CW_025",
+        "name": "Mistslime Gland Bow",
+        "material_id": "MAT_025",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 4, "tactics": 0, "survival": 0 },
+        "recipe": [{ "material_id": "MAT_025", "count": 1 }]
+      }
+    ],
+    "armor": [
+      {
+        "id": "CA_001",
+        "name": "Cutahead Crest Mail",
+        "material_id": "MAT_001",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 90,
+        "recipe": [{ "material_id": "MAT_001", "count": 1 }]
+      },
+      {
+        "id": "CA_002",
+        "name": "Leaf-Hider Horn Mail",
+        "material_id": "MAT_002",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 78,
+        "recipe": [{ "material_id": "MAT_002", "count": 1 }]
+      },
+      {
+        "id": "CA_003",
+        "name": "Ambushjaw Fang Mail",
+        "material_id": "MAT_003",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 24,
+        "recipe": [{ "material_id": "MAT_003", "count": 1 }]
+      },
+      {
+        "id": "CA_004",
+        "name": "Snatchjaw Claw Mail",
+        "material_id": "MAT_004",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 58,
+        "recipe": [{ "material_id": "MAT_004", "count": 1 }]
+      },
+      {
+        "id": "CA_005",
+        "name": "Deepwood Crest Mail",
+        "material_id": "MAT_005",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 35,
+        "recipe": [{ "material_id": "MAT_005", "count": 1 }]
+      },
+  
+      {
+        "id": "CA_006",
+        "name": "Toughshell Plate Mail",
+        "material_id": "MAT_006",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 49,
+        "recipe": [{ "material_id": "MAT_006", "count": 1 }]
+      },
+      {
+        "id": "CA_007",
+        "name": "Scorchhide Horn Mail",
+        "material_id": "MAT_007",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 81,
+        "recipe": [{ "material_id": "MAT_007", "count": 1 }]
+      },
+      {
+        "id": "CA_008",
+        "name": "Hornback Plate Mail",
+        "material_id": "MAT_008",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 26,
+        "recipe": [{ "material_id": "MAT_008", "count": 1 }]
+      },
+      {
+        "id": "CA_009",
+        "name": "Crater Plate Mail",
+        "material_id": "MAT_009",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 64,
+        "recipe": [{ "material_id": "MAT_009", "count": 1 }]
+      },
+      {
+        "id": "CA_010",
+        "name": "Magma Crest Mail",
+        "material_id": "MAT_010",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 37,
+        "recipe": [{ "material_id": "MAT_010", "count": 1 }]
+      },
+  
+      {
+        "id": "CA_011",
+        "name": "Heat-Haze Gland Mail",
+        "material_id": "MAT_011",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 52,
+        "recipe": [{ "material_id": "MAT_011", "count": 1 }]
+      },
+      {
+        "id": "CA_012",
+        "name": "Sandwatch Crest Mail",
+        "material_id": "MAT_012",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 88,
+        "recipe": [{ "material_id": "MAT_012", "count": 1 }]
+      },
+      {
+        "id": "CA_013",
+        "name": "Windslip Fang Mail",
+        "material_id": "MAT_013",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 40,
+        "recipe": [{ "material_id": "MAT_013", "count": 1 }]
+      },
+      {
+        "id": "CA_014",
+        "name": "Sandslide Claw Mail",
+        "material_id": "MAT_014",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 28,
+        "recipe": [{ "material_id": "MAT_014", "count": 1 }]
+      },
+      {
+        "id": "CA_015",
+        "name": "Quicksand Fang Mail",
+        "material_id": "MAT_015",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 71,
+        "recipe": [{ "material_id": "MAT_015", "count": 1 }]
+      },
+  
+      {
+        "id": "CA_016",
+        "name": "Headbutter Horn Mail",
+        "material_id": "MAT_016",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 55,
+        "recipe": [{ "material_id": "MAT_016", "count": 1 }]
+      },
+      {
+        "id": "CA_017",
+        "name": "Greathorn Plate Mail",
+        "material_id": "MAT_017",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 61,
+        "recipe": [{ "material_id": "MAT_017", "count": 1 }]
+      },
+      {
+        "id": "CA_018",
+        "name": "Snowsplitter Plate Mail",
+        "material_id": "MAT_018",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 30,
+        "recipe": [{ "material_id": "MAT_018", "count": 1 }]
+      },
+      {
+        "id": "CA_019",
+        "name": "Flankhorn Horn Mail",
+        "material_id": "MAT_019",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 43,
+        "recipe": [{ "material_id": "MAT_019", "count": 1 }]
+      },
+      {
+        "id": "CA_020",
+        "name": "Break-In Crest Mail",
+        "material_id": "MAT_020",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 85,
+        "recipe": [{ "material_id": "MAT_020", "count": 1 }]
+      },
+  
+      {
+        "id": "CA_021",
+        "name": "Mudwait Gland Mail",
+        "material_id": "MAT_021",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 90,
+        "recipe": [{ "material_id": "MAT_021", "count": 1 }]
+      },
+      {
+        "id": "CA_022",
+        "name": "Reedshade Crest Mail",
+        "material_id": "MAT_022",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 74,
+        "recipe": [{ "material_id": "MAT_022", "count": 1 }]
+      },
+      {
+        "id": "CA_023",
+        "name": "Boglurker Gland Mail",
+        "material_id": "MAT_023",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 61,
+        "recipe": [{ "material_id": "MAT_023", "count": 1 }]
+      },
+      {
+        "id": "CA_024",
+        "name": "Mireback Plate Mail",
+        "material_id": "MAT_024",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 46,
+        "recipe": [{ "material_id": "MAT_024", "count": 1 }]
+      },
+      {
+        "id": "CA_025",
+        "name": "Mistslime Gland Mail",
+        "material_id": "MAT_025",
+        "required_stats": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "stat_modifiers": { "might": 0, "mastery": 0, "tactics": 0, "survival": 0 },
+        "prot": 32,
+        "recipe": [{ "material_id": "MAT_025", "count": 1 }]
+      }
+    ]
+  }

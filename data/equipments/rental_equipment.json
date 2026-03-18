@@ -1,0 +1,58 @@
+{
+    "weapons": [
+      {
+        "id": "WEAPON_001",
+        "name": "Rental Iron Blade",
+        "required_stats": {
+          "might": 0,
+          "mastery": 0,
+          "tactics": 0,
+          "survival": 0
+        },
+        "stat_modifiers": {
+          "might": 2,
+          "mastery": 0,
+          "tactics": 0,
+          "survival": 0
+        },
+        "rental_cost_gold": 1
+      },
+      {
+        "id": "WEAPON_002",
+        "name": "Rental Hunter Bow",
+        "required_stats": {
+          "might": 0,
+          "mastery": 0,
+          "tactics": 0,
+          "survival": 0
+        },
+        "stat_modifiers": {
+          "might": 0,
+          "mastery": 2,
+          "tactics": 0,
+          "survival": 0
+        },
+        "rental_cost_gold": 1
+      }
+    ],
+    "armor": [
+      {
+        "id": "ARMOR_001",
+        "name": "Rental Padded Vest",
+        "required_stats": {
+          "might": 0,
+          "mastery": 0,
+          "tactics": 0,
+          "survival": 0
+        },
+        "stat_modifiers": {
+          "might": 0,
+          "mastery": 0,
+          "tactics": 0,
+          "survival": 0
+        },
+        "prot": 2,
+        "rental_cost_gold": 1
+      }
+    ]
+  }

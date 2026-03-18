@@ -1,0 +1,59 @@
+{
+    "growth_types": [
+      {
+        "id": "GROWTH_001",
+        "name": "Might Focus",
+        "per_level_growth": { "might": 9, "mastery": 1, "tactics": 1, "survival": 1 }
+      },
+      {
+        "id": "GROWTH_002",
+        "name": "Mastery Focus",
+        "per_level_growth": { "might": 1, "mastery": 9, "tactics": 1, "survival": 1 }
+      },
+      {
+        "id": "GROWTH_003",
+        "name": "Tactics Focus",
+        "per_level_growth": { "might": 1, "mastery": 1, "tactics": 9, "survival": 1 }
+      },
+      {
+        "id": "GROWTH_004",
+        "name": "Survival Focus",
+        "per_level_growth": { "might": 1, "mastery": 1, "tactics": 1, "survival": 9 }
+      },
+      {
+        "id": "GROWTH_005",
+        "name": "Might + Mastery",
+        "per_level_growth": { "might": 5, "mastery": 5, "tactics": 1, "survival": 1 }
+      },
+      {
+        "id": "GROWTH_006",
+        "name": "Might + Tactics",
+        "per_level_growth": { "might": 5, "mastery": 1, "tactics": 5, "survival": 1 }
+      },
+      {
+        "id": "GROWTH_007",
+        "name": "Might + Survival",
+        "per_level_growth": { "might": 5, "mastery": 1, "tactics": 1, "survival": 5 }
+      },
+      {
+        "id": "GROWTH_008",
+        "name": "Mastery + Tactics",
+        "per_level_growth": { "might": 1, "mastery": 5, "tactics": 5, "survival": 1 }
+      },
+      {
+        "id": "GROWTH_009",
+        "name": "Mastery + Survival",
+        "per_level_growth": { "might": 1, "mastery": 5, "tactics": 1, "survival": 5 }
+      },
+      {
+        "id": "GROWTH_010",
+        "name": "Tactics + Survival",
+        "per_level_growth": { "might": 1, "mastery": 1, "tactics": 5, "survival": 5 }
+      },
+      {
+        "id": "GROWTH_011",
+        "name": "Balanced",
+        "per_level_growth": { "might": 3, "mastery": 3, "tactics": 3, "survival": 3 }
+      }
+    ]
+  }
