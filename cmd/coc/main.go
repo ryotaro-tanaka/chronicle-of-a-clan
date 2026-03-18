@@ -4,30 +4,18 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"os/exec"
 	"path/filepath"
 
 	"chronicle-of-a-clan/internal/core/monsters"
 	"chronicle-of-a-clan/internal/core/quests"
 	"chronicle-of-a-clan/internal/core/save"
-	"chronicle-of-a-clan/internal/ui/repl"
+	"chronicle-of-a-clan/internal/ui/app"
 	"chronicle-of-a-clan/internal/ui/vfs"
 )
 
 func main() {
 	code := run(os.Args, os.Stdout, os.Stderr)
-	// Must run before os.Exit; defer would not run.
-	restoreTerminal()
 	os.Exit(code)
-}
-
-// restoreTerminal restores the terminal to cooked mode after go-prompt exits.
-// go-prompt v0.2.6 leaves the terminal in raw mode (no echo); stty sane fixes it.
-// Linux/WSL only; no-op on Windows where stty is not available.
-func restoreTerminal() {
-    c := exec.Command("stty", "sane")  // または "/bin/stty", "-raw", "echo"
-    c.Stdin = os.Stdin
-    _ = c.Run()
 }
 
 func run(argv []string, out, errOut io.Writer) int {
@@ -76,8 +64,9 @@ func run(argv []string, out, errOut io.Writer) int {
 	root := vfs.NewTree()
 	vfs.AttachQuests(root, state, keyQuestEntries, bossProfiles)
 
-	session := repl.NewSession(state, root, bossProfiles, out, errOut)
-	return session.RunPrompt()
+	_ = out
+	_ = errOut
+	return app.Run(state, root, bossProfiles)
 }
 
 func usage(argv []string) string {

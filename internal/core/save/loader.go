@@ -25,10 +25,21 @@ type clanFile struct {
 		Gold int    `json:"gold"`
 		Fame int    `json:"fame"`
 	} `json:"clan"`
-	Members   []json.RawMessage `json:"members"`
+	Members []struct {
+		ID           string `json:"id"`
+		Name         string `json:"name"`
+		GrowthTypeID string `json:"growth_type_id"`
+		XP           int    `json:"xp"`
+	} `json:"members"`
 	Inventory struct {
-		Weapons []json.RawMessage `json:"weapons"`
-		Armor   []json.RawMessage `json:"armor"`
+		Weapons []struct {
+			ID    string `json:"id"`
+			Count int    `json:"count"`
+		} `json:"weapons"`
+		Armor []struct {
+			ID    string `json:"id"`
+			Count int    `json:"count"`
+		} `json:"armor"`
 	} `json:"inventory"`
 	InProgress struct {
 		Crafting  []json.RawMessage `json:"crafting"`
@@ -82,6 +93,27 @@ func Load(slotName string) (State, error) {
 		return State{}, err
 	}
 
+	members := make([]Member, 0, len(clan.Members))
+	for _, m := range clan.Members {
+		members = append(members, Member{
+			ID:           m.ID,
+			Name:         m.Name,
+			GrowthTypeID: m.GrowthTypeID,
+			XP:           m.XP,
+		})
+	}
+
+	inv := Inventory{
+		Weapons: make([]InventoryItem, 0, len(clan.Inventory.Weapons)),
+		Armor:   make([]InventoryItem, 0, len(clan.Inventory.Armor)),
+	}
+	for _, w := range clan.Inventory.Weapons {
+		inv.Weapons = append(inv.Weapons, InventoryItem{ID: w.ID, Count: w.Count})
+	}
+	for _, a := range clan.Inventory.Armor {
+		inv.Armor = append(inv.Armor, InventoryItem{ID: a.ID, Count: a.Count})
+	}
+
 	keyOrder := clan.KeyQuestProgress.CurrentOrder
 	if keyOrder < 1 {
 		keyOrder = 1
@@ -102,6 +134,8 @@ func Load(slotName string) (State, error) {
 		ChronicleEntryCount:  chronicleCount,
 		HasChronicle:         hasChronicle,
 		KeyQuestCurrentOrder: keyOrder,
+		Members:              members,
+		Inventory:            inv,
 	}, nil
 }
 

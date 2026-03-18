@@ -125,56 +125,6 @@ func TestPathBasedExitSetsDone(t *testing.T) {
 	}
 }
 
-func TestCompletionEmptyInputReturnsCommands(t *testing.T) {
-	var out, err bytes.Buffer
-	s := newTestSession(save.State{}, &out, &err)
-	got := s.completeLine("")
-	texts := make([]string, len(got))
-	for i, g := range got {
-		texts[i] = g.Text
-	}
-	for _, want := range []string{"ls", "cd", "status", "exit"} {
-		if !contains(texts, want) {
-			t.Errorf("completion for empty input should include %q, got %v", want, texts)
-		}
-	}
-}
-
-func TestCompletionPrefixFiltersCommands(t *testing.T) {
-	var out, err bytes.Buffer
-	s := newTestSession(save.State{}, &out, &err)
-	got := s.completeLine("s")
-	texts := make([]string, len(got))
-	for i, g := range got {
-		texts[i] = g.Text
-	}
-	if !contains(texts, "status") {
-		t.Errorf("completion for \"s\" should include status, got %v", texts)
-	}
-}
-
-func TestCompletionCdPathSuggestsClan(t *testing.T) {
-	var out, err bytes.Buffer
-	s := newTestSession(save.State{}, &out, &err)
-	got := s.completeLine("cd c")
-	texts := make([]string, len(got))
-	for i, g := range got {
-		texts[i] = g.Text
-	}
-	if !contains(texts, "clan/") {
-		t.Errorf("completion for \"cd c\" should include clan/, got %v", texts)
-	}
-}
-
-func contains(ss []string, s string) bool {
-	for _, x := range ss {
-		if x == s {
-			return true
-		}
-	}
-	return false
-}
-
 func TestQuestListAndInfo(t *testing.T) {
 	keyQuests, err := quests.LoadKeyQuests()
 	if err != nil {
@@ -236,5 +186,31 @@ func TestQuestListAndInfo(t *testing.T) {
 	}
 	if !strings.Contains(out.String(), "Reward:") {
 		t.Errorf("info should show Reward line, got: %s", out.String())
+	}
+}
+
+func TestPartyAndClearHooks(t *testing.T) {
+	keyQuests, err := quests.LoadKeyQuests()
+	if err != nil {
+		t.Skipf("LoadKeyQuests: %v", err)
+	}
+	bossProfiles, err := monsters.LoadBossProfiles()
+	if err != nil {
+		t.Skipf("LoadBossProfiles: %v", err)
+	}
+	root := vfs.NewTree()
+	vfs.AttachQuests(root, save.State{KeyQuestCurrentOrder: 1}, keyQuests, bossProfiles)
+	var out, errBuf bytes.Buffer
+	s := NewSession(save.State{}, root, bossProfiles, &out, &errBuf)
+
+	var partyPath, clearPath string
+	s.SetActionHooks(func(q string) { partyPath = q }, func(q string) { clearPath = q })
+	s.ExecuteLine("quests/keys/hunt_ambushjaw_gator/party")
+	if partyPath != "/quests/keys/hunt_ambushjaw_gator" {
+		t.Fatalf("unexpected party path: %s", partyPath)
+	}
+	s.ExecuteLine("quests/keys/hunt_ambushjaw_gator/clear")
+	if clearPath != "/quests/keys/hunt_ambushjaw_gator" {
+		t.Fatalf("unexpected clear path: %s", clearPath)
 	}
 }
