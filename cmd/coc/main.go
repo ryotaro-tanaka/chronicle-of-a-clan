@@ -64,9 +64,7 @@ func run(argv []string, out, errOut io.Writer) int {
 	root := vfs.NewTree()
 	vfs.AttachQuests(root, state, keyQuestEntries, bossProfiles)
 
-	_ = out
-	_ = errOut
-	return app.Run(state, root, bossProfiles)
+	return app.Run(state, root, bossProfiles, errOut)
 }
 
 func usage(argv []string) string {

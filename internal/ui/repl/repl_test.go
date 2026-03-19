@@ -168,6 +168,12 @@ func TestQuestListAndInfo(t *testing.T) {
 	if !strings.Contains(out.String(), "[VIEW] info") {
 		t.Errorf("ls quests/keys/hunt_ambushjaw_gator/ should show [VIEW] info, got: %s", out.String())
 	}
+	if !strings.Contains(out.String(), "[ACT] party") {
+		t.Errorf("ls quests/keys/hunt_ambushjaw_gator/ should show [ACT] party, got: %s", out.String())
+	}
+	if !strings.Contains(out.String(), "[ACT] clear") {
+		t.Errorf("ls quests/keys/hunt_ambushjaw_gator/ should show [ACT] clear, got: %s", out.String())
+	}
 	out.Reset()
 	errBuf.Reset()
 
@@ -212,5 +218,21 @@ func TestPartyAndClearHooks(t *testing.T) {
 	s.ExecuteLine("quests/keys/hunt_ambushjaw_gator/clear")
 	if clearPath != "/quests/keys/hunt_ambushjaw_gator" {
 		t.Fatalf("unexpected clear path: %s", clearPath)
+	}
+}
+
+func TestInvalidLSAndCDArguments(t *testing.T) {
+	var out, err bytes.Buffer
+	s := newTestSession(save.State{}, &out, &err)
+
+	s.ExecuteLine("ls a b")
+	if !strings.Contains(err.String(), "ls accepts zero or one path argument") {
+		t.Fatalf("unexpected ls arg validation error: %q", err.String())
+	}
+	err.Reset()
+
+	s.ExecuteLine("cd")
+	if !strings.Contains(err.String(), "cd requires exactly one path argument") {
+		t.Fatalf("unexpected cd arg validation error: %q", err.String())
 	}
 }
