@@ -1,3 +1,4 @@
 docs/note*.md
 bin/
 saves/*
+.vscode/
