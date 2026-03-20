@@ -19,17 +19,9 @@ type clanFile struct {
 	Meta struct {
 		SaveVersion int `json:"save_version"`
 	} `json:"meta"`
-	Clan struct {
-		Name string `json:"name"`
-		Day  int    `json:"day"`
-		Gold int    `json:"gold"`
-		Fame int    `json:"fame"`
-	} `json:"clan"`
-	Members   []json.RawMessage `json:"members"`
-	Inventory struct {
-		Weapons []json.RawMessage `json:"weapons"`
-		Armor   []json.RawMessage `json:"armor"`
-	} `json:"inventory"`
+	Clan       Clan      `json:"clan"`
+	MembersEx  []Member  `json:"members"`
+	Inventory  Inventory `json:"inventory"`
 	InProgress struct {
 		Crafting  []json.RawMessage `json:"crafting"`
 		Upgrading []json.RawMessage `json:"upgrading"`
@@ -56,18 +48,9 @@ func Load(slotName string) (State, error) {
 		return State{}, fmt.Errorf("invalid save directory path: not a directory: %s", saveDir)
 	}
 
-	clanPath := filepath.Join(saveDir, "clan.json")
-	clanBytes, err := os.ReadFile(clanPath)
+	clan, err := loadClanFile(saveDir)
 	if err != nil {
-		if errors.Is(err, os.ErrNotExist) {
-			return State{}, errors.New("missing required file: clan.json not found")
-		}
-		return State{}, fmt.Errorf("cannot read clan.json: %w", err)
-	}
-
-	var clan clanFile
-	if err := json.Unmarshal(clanBytes, &clan); err != nil {
-		return State{}, fmt.Errorf("invalid JSON (clan.json): %w", err)
+		return State{}, err
 	}
 	if clan.Meta.SaveVersion != SupportedSaveVersion {
 		return State{}, fmt.Errorf("unsupported save_version: detected=%d supported=[%d]", clan.Meta.SaveVersion, SupportedSaveVersion)
@@ -94,7 +77,7 @@ func Load(slotName string) (State, error) {
 		CurrentDay:           clan.Clan.Day,
 		Gold:                 clan.Clan.Gold,
 		Fame:                 clan.Clan.Fame,
-		MembersCount:         len(clan.Members),
+		MembersCount:         len(clan.MembersEx),
 		ActiveQuestsCount:    questsCount,
 		WeaponsCount:         len(clan.Inventory.Weapons),
 		ArmorCount:           len(clan.Inventory.Armor),
@@ -102,6 +85,27 @@ func Load(slotName string) (State, error) {
 		ChronicleEntryCount:  chronicleCount,
 		HasChronicle:         hasChronicle,
 		KeyQuestCurrentOrder: keyOrder,
+	}, nil
+}
+
+func LoadDetailed(slotName string) (DetailedState, error) {
+	if err := validateSlotName(slotName); err != nil {
+		return DetailedState{}, err
+	}
+	saveDir := slotPath(slotName)
+	clan, err := loadClanFile(saveDir)
+	if err != nil {
+		return DetailedState{}, err
+	}
+	if clan.Meta.SaveVersion != SupportedSaveVersion {
+		return DetailedState{}, fmt.Errorf("unsupported save_version: detected=%d supported=[%d]", clan.Meta.SaveVersion, SupportedSaveVersion)
+	}
+	return DetailedState{
+		SaveDir:     saveDir,
+		SaveVersion: clan.Meta.SaveVersion,
+		Clan:        clan.Clan,
+		Members:     append([]Member(nil), clan.MembersEx...),
+		Inventory:   clan.Inventory,
 	}, nil
 }
 
@@ -193,6 +197,23 @@ func copyFile(src, dst string) error {
 		return err
 	}
 	return nil
+}
+
+func loadClanFile(saveDir string) (clanFile, error) {
+	clanPath := filepath.Join(saveDir, "clan.json")
+	clanBytes, err := os.ReadFile(clanPath)
+	if err != nil {
+		if errors.Is(err, os.ErrNotExist) {
+			return clanFile{}, errors.New("missing required file: clan.json not found")
+		}
+		return clanFile{}, fmt.Errorf("cannot read clan.json: %w", err)
+	}
+
+	var clan clanFile
+	if err := json.Unmarshal(clanBytes, &clan); err != nil {
+		return clanFile{}, fmt.Errorf("invalid JSON (clan.json): %w", err)
+	}
+	return clan, nil
 }
 
 func countActiveQuests(path string) (int, error) {

@@ -14,9 +14,14 @@ Implementation constraints and technical decisions that affect long-term maintai
 ## Project layout (minimal)
 - Entry point: `cmd/coc/main.go`
 - Core (domain, persistence, save validation): `internal/core/`
-- UI (terminal TUI, virtual FS, formatting): `internal/ui/` (or equivalent)
+- UI (Bubble Tea app, virtual FS, formatting): `internal/ui/`
 - Docs: `docs/`
 - Data templates: `data/save_init/`
+
+## UI technology
+- Interactive UI is implemented with Bubble Tea.
+- The interactive layer may use multiple screen models internally (navigation, party setup, equipment selection), but the user experiences one continuous TUI session.
+- UI-only transient state such as per-quest party setup may live in memory for the duration of the session and does not need to be written to save files until the owning gameplay system requires persistence.
 
 ## Save Boundary (slot-based)
 This project is designed so that copying a save slot directory reproduces the same game state.

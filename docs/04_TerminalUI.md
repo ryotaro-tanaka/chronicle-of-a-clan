@@ -9,7 +9,7 @@ Defines the terminal UI contract: inputs, outputs, and presentation rules. This 
 
 ## Startup (CLI) contract
 - The program is invoked with a save slot name (not a filesystem path).
-- `coc <save_dir>` loads from: `saves/<save_dir>/` and enters the interactive prompt.
+- `coc <save_dir>` loads from: `saves/<save_dir>/` and enters the interactive Bubble Tea TUI.
 - `coc init <save_dir>` creates: `saves/<save_dir>/` from the template and exits (or prints success and exits).
 
 ### No-arg usage messages
@@ -26,7 +26,9 @@ Defines the terminal UI contract: inputs, outputs, and presentation rules. This 
 - `<save_dir>` is a slot name; paths are not accepted.
 
 ## Interactive session model
-- Interactive input uses `go-prompt` for history, line editing, and tab completion.
+- Interactive input is handled inside Bubble Tea.
+- The primary screen is a navigation view with a one-line command input, output log, and current virtual path.
+- Focused task screens may replace the navigation view temporarily (for example: party setup and equipment selection) and then return to navigation.
 - The UI must not contain game rules.
 
 ## Navigation model (Virtual FS)
@@ -56,15 +58,18 @@ Defines the terminal UI contract: inputs, outputs, and presentation rules. This 
 - `quests/` children: `[DIR] keys`, `[DIR] forest`, `[DIR] volcano`, `[DIR] desert`, `[DIR] tundra`, `[DIR] swamp`.
 - **`quests/keys/`**: Lists only the key quest whose `order` equals `key_quest_progress.current_order` (the single “next” quest to advance the story). One quest per order, so `keys/` shows one entry. Each entry: `[DIR] hunt_<monster_slug>`.
 - **`quests/<region>/`**: Lists all key quests with `order <= current_order` in that region (filter by the profile’s region). Each entry: `[DIR] hunt_<monster_slug>` (e.g. `hunt_ambushjaw_gator`).
-- Under each `hunt_<slug>`: `[VIEW] info`. Invocation by path (e.g. `quests/keys/hunt_ambushjaw_gator/info`) is supported.
+- Under each `hunt_<slug>`: `[VIEW] info`, `[ACT] party`, `[ACT] clear`.
+- Invocation by path (e.g. `quests/keys/hunt_ambushjaw_gator/info`) is supported.
 - **Quest info view contract**: Output lines: `Name: <name>`, `Lv: <min>-<max>`, `Specialties: <stats>`, `Reward:`, `Description: <description>`. Reward is empty for MVP.
 
-## Completion (go-prompt)
+## Completion and line input
 - Completion includes:
   - command names: `ls`, `cd`, `status`, `exit`
   - directory paths after `cd ` and `ls `
   - path invocation forms like `clan/status`
 - Completion candidates come from the virtual FS tree and current location.
+- The navigation input supports basic line editing, space entry, and `Tab` completion.
+- Command history is optional; MVP does not require shell-like history behavior.
 
 ## Commands (Stage 1–3 baseline)
 - `ls` / `ls <path>`
@@ -73,6 +78,37 @@ Defines the terminal UI contract: inputs, outputs, and presentation rules. This 
 - `exit` (action)
 
 No `help` command.
+
+## Quest party actions (Stage 9)
+- `party`
+  - Available under a quest directory as `[ACT] party`.
+  - Opens a dedicated member-selection screen instead of printing a text-only response.
+  - Restores any previously selected members and equipment for that quest from session memory.
+- `clear`
+  - Available under a quest directory as `[ACT] clear`.
+  - Clears the stored party selection for that quest only.
+  - Does not clear the navigation log.
+
+## Party Setup Screen Contract
+- Title: `Party Setup - Select Members`
+- Shows the save roster as a vertical list with cursor and selected markers.
+- Supports:
+  - `Up` / `Down`: move cursor
+  - `Enter`: toggle current member
+  - `F`: confirm selected members and move to equipment selection
+  - `Esc`: cancel and return to navigation without committing changes
+- The screen enforces a maximum of 4 selected members.
+
+## Equipment Selection Screen Contract
+- Title format: `Equip Member - <member_name>`
+- Shows weapon candidates, armor candidates, current stats, and a preview block.
+- Supports:
+  - `Up` / `Down`: move within the focused equipment list
+  - `Tab`: switch focus between weapon and armor
+  - `Enter`: confirm the highlighted option for the focused list
+  - `N`: advance to the next selected member
+  - `Esc`: return to the member-selection screen
+- After the last selected member is confirmed, control returns to the navigation screen and the per-quest party state remains in memory for the session.
 
 ## Dev commands (Stage 5+)
 

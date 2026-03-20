@@ -148,3 +148,29 @@ func TestLoad_KeyQuestProgressMissingDefaultsToOne(t *testing.T) {
 		t.Fatalf("expected KeyQuestCurrentOrder 1 when missing, got %d", state.KeyQuestCurrentOrder)
 	}
 }
+
+func TestLoadDetailed(t *testing.T) {
+	dir := t.TempDir()
+	withCWD(t, dir)
+	slotDir := filepath.Join("saves", "slot1")
+	if err := os.MkdirAll(slotDir, 0o755); err != nil {
+		t.Fatalf("mkdir: %v", err)
+	}
+	writeFile(t, slotDir, "clan.json", `{
+		"meta":{"save_version":1},
+		"clan":{"id":"clan_1","name":"A","day":1,"gold":10,"fame":2},
+		"members":[{"id":"member_1","name":"Ralf","growth_type_id":"GROWTH_005","xp":100,"joined_day":1}],
+		"inventory":{"weapons":[{"id":"CW_001","count":1}],"armor":[{"id":"CA_001","count":2}]}
+	}`)
+
+	state, err := LoadDetailed("slot1")
+	if err != nil {
+		t.Fatalf("LoadDetailed: %v", err)
+	}
+	if state.Clan.Name != "A" || len(state.Members) != 1 {
+		t.Fatalf("unexpected detailed state: %+v", state)
+	}
+	if len(state.Inventory.Weapons) != 1 || state.Inventory.Weapons[0].ID != "CW_001" {
+		t.Fatalf("unexpected inventory: %+v", state.Inventory)
+	}
+}

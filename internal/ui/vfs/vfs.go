@@ -26,9 +26,9 @@ type Node struct {
 	ProfileID string // for quest info VIEW nodes: boss profile_id to display
 }
 
-func (n *Node) Name() string       { return n.name }
-func (n *Node) Type() NodeType     { return n.typeTag }
-func (n *Node) Parent() *Node      { return n.parent }
+func (n *Node) Name() string               { return n.name }
+func (n *Node) Type() NodeType             { return n.typeTag }
+func (n *Node) Parent() *Node              { return n.parent }
 func (n *Node) Children() map[string]*Node { return n.children }
 
 func NewTree() *Node {
@@ -66,6 +66,8 @@ func AttachQuests(root *Node, state save.State, keyQuestEntries []quests.Entry, 
 		huntName := "hunt_" + slug
 		huntUnderKeys := newDir(huntName, keysDir)
 		newViewWithProfile("info", e.ProfileID, huntUnderKeys)
+		newNode("party", NodeAct, huntUnderKeys, "")
+		newNode("clear", NodeAct, huntUnderKeys, "")
 	}
 
 	// quests/<region>/: all available (order <= current_order) in that region
@@ -79,6 +81,8 @@ func AttachQuests(root *Node, state save.State, keyQuestEntries []quests.Entry, 
 		if regionDir, ok := regionDirs[regionID]; ok {
 			huntUnderRegion := newDir(huntName, regionDir)
 			newViewWithProfile("info", e.ProfileID, huntUnderRegion)
+			newNode("party", NodeAct, huntUnderRegion, "")
+			newNode("clear", NodeAct, huntUnderRegion, "")
 		}
 	}
 }
