@@ -11,8 +11,8 @@ import (
 	"chronicle-of-a-clan/internal/core/monsters"
 	"chronicle-of-a-clan/internal/core/save"
 	"chronicle-of-a-clan/internal/ui/repl"
+	tea "chronicle-of-a-clan/internal/ui/tea"
 	"chronicle-of-a-clan/internal/ui/vfs"
-	tea "github.com/charmbracelet/bubbletea"
 )
 
 type memberView struct {

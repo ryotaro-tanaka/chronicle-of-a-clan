@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"chronicle-of-a-clan/internal/core/equipment"
-	tea "github.com/charmbracelet/bubbletea"
+	tea "chronicle-of-a-clan/internal/ui/tea"
 )
 
 func (m *model) updateEquip(msg tea.Msg) (tea.Model, tea.Cmd) {

@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	tea "github.com/charmbracelet/bubbletea"
+	tea "chronicle-of-a-clan/internal/ui/tea"
 )
 
 func (m *model) updateParty(msg tea.Msg) (tea.Model, tea.Cmd) {

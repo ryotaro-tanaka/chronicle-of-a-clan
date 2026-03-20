@@ -3,7 +3,7 @@ package app
 import (
 	"strings"
 
-	tea "github.com/charmbracelet/bubbletea"
+	tea "chronicle-of-a-clan/internal/ui/tea"
 )
 
 func (m *model) updateNav(msg tea.Msg) (tea.Model, tea.Cmd) {
